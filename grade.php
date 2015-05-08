@@ -8,6 +8,8 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "phys7224";
+
+$hwNo = "hw16";
 $tsubmit = "hw16_submit";
 $tkey = "hw16_key";
 $tgrade = "hw16_grades";
@@ -30,39 +32,35 @@ if($ungraded->num_rows > 0){
                 $points[$key] = grade_one_entry($conn, $tkey, $key, $value);
             }
         }
-        $total = array_sum($points);        
+        $total = array_sum($points);
+        $result = $conn->query("SELECT SUM(points) AS value_sum FROM $tkey"); 
+        $maxim = $result->fetch_assoc(); 
+        $sum = $maxim['value_sum'];
         //print_r($points);
-
-        // write the grade
-        $sql = "select * from $tgrade where email='".$row['email']."'";
-        echo $sql, "<br>";
-        $student = $conn->query($sql);
-        if($student->num_rows == 0){
-            // create the student entry for this student
-            $tmp = array('email' => "'".$row['email']."'", 
-                         'num_submit' => 1, 'points' => $total);
-            $new_entry = array_merge($tmp, $points);
-            $columns = implode(", ", array_keys($new_entry));
-            $new_row = implode(", ", array_values($new_entry));
-            $sql = "insert into $tgrade ($columns) values ($new_row)";
-            if($conn->query($sql) == FALSE){
-                echo "error:" . $sql . "<br>" . $conn->error;
-            }
-        }
-        elseif($student->num_rows == 1){
-            // just update his/her grade
-            $sql = "update $tgrade set points=$total where email=$row[email] ";
-            $conn->query($sql);
-            foreach($points as $key => $value){
-                $sql = "update $tgrade set $key=$value where email=$row[email] "; 
-                $conn->query($sql);
-            }
-        }
-        else {
-            // find more than one => error
-            echo "Error: two identical emails are found in the grade table.", "<br>";
-        }  
         
+        // write the grade
+        // create the student entry for this student
+        $tmp = array('email' => "'".$row['email']."'", 
+                     'time' => "'".$row['time']."'",
+                     'points' => $total,
+                     'percent' => $total/$sum );
+        $new_entry = array_merge($tmp, $points);
+        $columns = implode(", ", array_keys($new_entry));
+        $new_row = implode(", ", array_values($new_entry));
+        $sql = "insert into $tgrade ($columns) values ($new_row)";
+        if($conn->query($sql) == FALSE){
+            echo "error:" . $sql . "<br>" . $conn->error;
+        }
+        
+        // change the hasGraded status
+        $sql = "update $tsubmit set hasGraded=1 where email='"
+             .$row['email']."' and time='".$row['time']."'";
+        // echo $sql;
+        $conn->query($sql);
+
+        // mail the grade
+        mail_grade($conn, $hwNo, $row['email'], $new_entry, $tkey);
+
     }
 }
 
@@ -88,6 +86,28 @@ function grade_one_entry($conn, $tkey, $key, $value){
     
     // error case
     return 0;
+}
+
+function mail_grade($conn, $hwNo, $email, $grade, $tkey){
+        $to = $email;
+        $subject = "Nonliear Dynamics Online Course : Your grade for $hwNo";
+        $txt = " Your grade: \r\n\r\n";
+        foreach($grade as $key => $value){
+            $txt .= "$key"." : "."$value \r\n";
+        }
+
+        $txt .= "\r\n ======================================= \r\n";
+        $txt .= "\r\n Assigned points for each problem : \r\n\r\n";
+        
+        $tmp = $conn->query("select question, points from $tkey");
+        while ($answer = $tmp->fetch_assoc()){
+            foreach($answer as $key => $value){
+                $txt .= "$key" . " : " . "$value \r\n";
+            }
+        }
+
+        mail($to, $subject, $txt);
+
 }
 
 ?>
