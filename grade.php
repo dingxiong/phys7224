@@ -64,6 +64,7 @@ if($ungraded->num_rows > 0){
     }
 }
 
+echo "successfully graded. ", "<br>";
 	
 $conn->close();
 

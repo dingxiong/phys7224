@@ -98,22 +98,22 @@
     <!--============================ -->
     <script type="text/javascript">
       
-      function validateDecimal(input) {
+      function validateDecimal(input, qnum) {
 	  var number = /^[-+]?[0-9]+\.[0-9]+$/;
-	  if(input.value.match(number)){
+	  if(input.value.match(number) ){
 	      return true;
 	  } else {
-	       alert('please input a decimal number');
+	      alert('please input a decimal number for question  ' + qnum);
 	      return false;
 	  }
       }
 
-      function validateInt(input){
+      function validateInt(input, qnum){
 	  var number = /^[-+]?[0-9]+$/;  
-	  if(input.value.match(number)){
+	  if(input.value.match(number) ){
 	      return true;
 	  } else {
-	       alert('please input a integer number');
+	       alert('please input a integer number for question  ' + qnum );
 	      return false;
 	  }
       }
@@ -130,9 +130,9 @@
       }  
       
       function validateSubmit(){
-	  var q1 = validateDecimal(document.homework_form.q1);
-	  var q2 = validateDecimal(document.homework_form.q2);
-	  var q3 = validateDecimal(document.homework_form.q3);
+	  var q1 = validateDecimal(document.homework_form.q1, "q1");
+	  var q2 = validateDecimal(document.homework_form.q2, "q2");
+	  var q3 = validateDecimal(document.homework_form.q3, "q3");
 	  var email = validateEmail(document.homework_form.email);
 
 	  return q1 && q2 && q3 && email;
