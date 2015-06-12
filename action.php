@@ -27,33 +27,9 @@
 	    ////////////////////////////////////////////////////////////
 	    //                 submit part                            //
 	    ////////////////////////////////////////////////////////////
-	    // prepare the answer array
-	    $answer = array();
-	    foreach($_POST as $key => $value){
-		$value = test_input($_POST[$key]); // for security reason
-		if($key != "submit"){
-		    if($key == "email")
-			$answer[$key] =  "'$value'";
-		    else 
-			$answer[$key] = $value;
-		}
-	    }
-	    $current_time = date("Y-m-d h:i:s");
-	    $answer['time'] = "'$current_time'";
-	    $answer['hasGraded'] = 0 ;
-	    // print_r($answer);
 	    
-	    // insert the new submit
-	    $columns = implode(", ", array_keys($answer));
-	    $new_row  = implode(", ", array_values($answer));
-	    $sql = "insert into $tsubmit ($columns) values ($new_row)";
-	    // echo $sql, "<br>";
-	    if($conn->query($sql) == FALSE){
-		echo "error:" . $sql . "<br>" . $conn->error;
-	    }
+	    submit($conn, $_POST);
 	    
-	    echo "Your submission is successfully. ", "<br>";
-
 	    ////////////////////////////////////////////////////////////
 	    //                 grade part                            //
 	    ////////////////////////////////////////////////////////////
@@ -106,32 +82,6 @@
 
 	    
 	    
-	}
-	
-	function test_input($data){
-	    $data = htmlspecialchars(stripslashes(trim($data)));
-	    return $data;
-	}
-	
-	// tkey : the key table
-	// key  : the problem is about to grade
-	// value : student's answer
-	// Note: the answer should be set up first.
-	function grade_one_entry($conn, $tkey, $key, $value){
-	    // only return the first answer
-	    $sql = "select * from $tkey where question = '".$key."' limit 1";
-	    $result = $conn->query($sql);
-	    if($result->num_rows == 1){
-		$answer = $result->fetch_assoc();
-		if($value >= $answer['left_value'] and $value <= $answer['right_value']){
-		    return $answer['points'];                   
-		} else {
-		    return 0;
-		}
-	    }
-	    
-	    // error case
-	    return 0;
 	}
 	
 	function mail_grade($conn, $hwNo, $email, $grade, $tkey){
