@@ -1,7 +1,73 @@
 <?php
 
+function getCourseInfo($courseNo){
+    switch($courseNo){
+	case 1:
+	    return 
+	case 2:
+	    return
+
+    }
+}
+
+function getWeekInfo($weekNo){
+    switch($weekNo){
+	case 1:
+	    return array("name" => "week 1", "link" => "http://www.chaosbook.org/course1/Course1w1.html");
+	    
+	case 2:
+	    return array("name" => "week 2", "link" => "http://www.chaosbook.org/course1/Course1w2.html");
+
+	case 3:
+	    return array("name" => "week 3", "link" => "http://www.chaosbook.org/course1/Course1w3.html");
+	    
+	case 4:
+	    return array("name" => "week 4", "link" => "http://www.chaosbook.org/course1/Course1w4.html");
+
+	case 5:
+	    return array("name" => "week 5", "link" => "http://www.chaosbook.org/course1/Course1w5.html");
+	    
+	case 6:
+	    return array("name" => "week 6", "link" => "http://www.chaosbook.org/course1/Course1w6.html");
+
+	case 7:
+	    return array("name" => "week 7", "link" => "http://www.chaosbook.org/course1/Course1w7.html");
+	    
+	case 8:
+	    return array("name" => "week 8", "link" => "http://www.chaosbook.org/course1/Course1w8.html");
+	    
+	case 9:
+	    return array("name" => "week 9", "link" => "http://www.chaosbook.org/course1/Course1w9.html");
+	    
+	case 10:
+	    return array("name" => "week 10", "link" => "http://www.chaosbook.org/course1/Course1w10.html");
+	    
+	case 11:
+	    return array("name" => "week 11", "link" => "http://www.chaosbook.org/course1/Course1w11.html");
+	    
+	case 12:
+	    return array("name" => "week 12", "link" => "http://www.chaosbook.org/course1/Course1w12.html");
+	    
+	case 13:
+	    return array("name" => "week 13", "link" => "http://www.chaosbook.org/course1/Course1w13.html");
+    }
+
+}
+
+
+function getHomeworkInfo($hwNo){
+
+}
+
 // function used use to formulate the body of the email
-function formualteMailContent($hwNo){
+function formualteMailContent($courseNo, $hwNo){
+    
+    switch($hwNo){
+	    
+
+
+    }
+    
     $message = '
     <html>
     <head>
