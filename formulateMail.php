@@ -5,12 +5,12 @@ function getCourseInfo($courseNo){
 	case 1:
 	    return array("name" => "Nonlinear Dynamics 1: Geometry of Chaos",
 		"link" => "http://chaosbook.org/course1/Syllabus.html"
-	    )
+	    );
 
-		case 2:
+	case 2:
 	    return array("name" => "Nonlinear dynamics 2: Chaos rules",
 		"link" => "http://chaosbook.org/course1/index2.html"
-	    )
+	    );
     }
 }
 
@@ -64,6 +64,9 @@ function getWeekInfo($weekNo){
 	case 16:
 	    return array("name" => "week 13", "link" => "http://www.chaosbook.org/course1/Course2w16.html");
 
+	default:
+	    echo "<br> The week No. is wrong ! <br>";
+	    break;
     }
 
 }
@@ -118,6 +121,10 @@ function getHomeworkInfo($hwNo){
 
 	case 16:
 	    return array("name" => "homework 13", "link" => "http://www.chaosbook.org/course1/homework16.html");
+
+	default:
+	    echo "<br> The homework No. is wrong ! <br>";
+	    break;
 
     }
 }
@@ -311,11 +318,5 @@ function formualteMailContent($courseNo, $weekNo, $hwNo){
     return $message;
 }
 
-
-// function used to send the email
-function mail_grade(){
-    
-
-}
 
 ?>
