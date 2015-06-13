@@ -36,15 +36,8 @@ function submit($conn, $submitData){
 
 }
 
-/**
- * @brief trim the data form submission for security consideration
- *
- * @param[in] data      data collected from html form
- */
-function test_input($data){
-    $data = htmlspecialchars(stripslashes(trim($data)));
-    return $data;
-}
+
+
 
 ?> 
 

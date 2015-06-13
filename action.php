@@ -3,15 +3,19 @@
     <body>
 	
 	<?php
+	
 	require_once('submit.php');
 	require_once('formulateMail.php');
+	require_once('grade.php');
+
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	    
 	    $servername = "localhost";
 	    $username = "root";
 	    $password = "";
 	    $dbname = "phys7224";
-
+	    
+	    
 	    $hwNo = "hw16";
 	    $tsubmit = "hw16_submit";
 	    $tkey = "hw16_key";
@@ -83,6 +87,30 @@
 	    
 	    
 	}
+
+	function extractSubmit($submitData){
+	    $answer = array();
+	    foreach($submitData as $key => $value){
+		$value = test_input($submitData[$key]); // for security reason
+		if($key != "submit"){
+		    if($key == "email") // email need to be stored in string 
+			$answer[$key] =  "'$value'";
+		    else 
+			$answer[$key] = $value;
+		}
+	    }
+	}
+
+	/**
+	 * @brief trim the data form submission for security consideration
+	 *
+	 * @param[in] data      data collected from html form
+	 */
+	function test_input($data){
+	    $data = htmlspecialchars(stripslashes(trim($data)));
+	    return $data;
+	}
+
 	
 	function mail_grade($conn, $hwNo, $email, $grade, $tkey){
 	    $to = $email;
