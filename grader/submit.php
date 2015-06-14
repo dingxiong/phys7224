@@ -62,7 +62,7 @@ function test_input($data){
  *
  * @param[in] sumbitData    result of function extractSubmit
  */
-function extractAnswerAndEamil($submitData){
+function extractAnswerAndEmail($submitData){
     // print_r( $submitData);
     $result = array();
     foreach($submitData as $key => $value){

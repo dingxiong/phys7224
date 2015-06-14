@@ -5,7 +5,6 @@
 	<?php
 	
 	require_once('submit.php');
-	require_once('formulateMail.php');
 	require_once('grade.php');
 
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -24,7 +23,7 @@
 	    
 	    /* obtain submitted data */
 	    $userSubmit = extractSubmit($_POST);
-	    $userAnswerAndEmail = extractAnswerAndEmail($userSubmit);
+	    $userAnswerAndEmail = extractAnswerAndEmail($userSubmit);	   
 
 	    /* point to the correct table */
 	    $tableNames =  findTableNames($userSubmit['hwNo']);
@@ -36,7 +35,7 @@
 	    submit($conn, $userAnswerAndEmail,  $submitTable);
 	    
 	    /* grade submission and send grade email */
-	    grade($conn, $keyTable, $submitTable, $gradesTable);
+	    grade($conn, $keyTable, $submitTable, $gradesTable, $userAnswerAndEmail);
 	    
 	    ////////////////////////////////////////////////////////////
 	    $conn->close();             // close the connection

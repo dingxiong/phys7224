@@ -44,7 +44,7 @@ $key = formKey('q2', 'Q16.2    Period-doubling bifurcation',
     36.32, 36.33, 4);
 writeKey($conn, $keyTable, $key);
 
-$key = formKey('q3', 'Q16.3    Equilibria in anti-symmetric spaceQ16.2', 
+$key = formKey('q3', 'Q16.3    Equilibria in anti-symmetric space', 
     0.03, 0.031, 3);
 writeKey($conn, $keyTable, $key);
 

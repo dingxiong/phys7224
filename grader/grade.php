@@ -1,4 +1,6 @@
 <?php
+require './vendor/phpmailer/phpmailer/PHPMailerAutoload.php';
+require_once('formulateMail.php');
 
 /**
  * @brief grade the submission
@@ -7,7 +9,7 @@
  * @param[in] submitTable     homework submission table
  */
 
-function grade($conn, $keyTable, $submitTable, $gradesTable){
+function grade($conn, $keyTable, $submitTable, $gradesTable, $userAnswerAndEmail){
     // find all ungraded entry
     $sql = " select * from $submitTable where hasGraded=0 ";    
     $ungraded = $conn->query($sql);
@@ -22,7 +24,8 @@ function grade($conn, $keyTable, $submitTable, $gradesTable){
 	    //print_r($points);
 	    
 	    // write the grade
-	    writeGrade($conn, $gradesTable, $row['email'], $row['time'], $sum, $max, $points);
+	    $newGrade= writeGrade($conn, $gradesTable, $row['email'], 
+		$row['time'], $sum, $max, $points);
 	    
 	    // change the hasGraded status
 	    $sql = "update $submitTable set hasGraded=1 where 
@@ -31,7 +34,7 @@ function grade($conn, $keyTable, $submitTable, $gradesTable){
 	    $conn->query($sql);
 	    
 	    // mail the grade
-	    mail_grade($conn, $hwNo, $row['email'], $new_entry, $keyTable);
+	    mail_grade($conn, $newGrade, $keyTable,  $userAnswerAndEmail);
 	    
 	}
     }        
@@ -61,7 +64,7 @@ function extractAnswer($submitEntry){
  */
 function gradeOneEntry($conn, $keyTable, $key, $value){
     // only return the first answer
-    $sql = "select * from $keyTable where id = " '$key' "' limit 1";
+    $sql = "select * from $keyTable where id =  '$key' limit 1";
     $result = $conn->query($sql);
     if($result->num_rows == 1){
 	$answer = $result->fetch_assoc();
@@ -79,7 +82,7 @@ function gradeOneEntry($conn, $keyTable, $key, $value){
 function gradeOneUser($conn, $keyTable, $userAnswer){
     $points = array();
     foreach($userAnswer as $key => $value){
-	$points[$key] = gradeOneEntry($conn, $keyTable, $value);
+	$points[$key] = gradeOneEntry($conn, $keyTable, $key, $value);
     }
     return $points;
 }
@@ -95,7 +98,7 @@ function calMaxPoints($conn, $keyTable){
 function writeGrade($conn, $gradesTable, $email, $time, $sum, $max, $points){
     // create the grade entry for this student
     $tmp = array('email' => " '$email' ", 
-	'time' => " '{$row['time']}' ",
+	'time' => " '$time' ",
 	'sum' => $sum,
 	'max' => $max, 
 	'percent' => $sum / $max );
@@ -106,28 +109,63 @@ function writeGrade($conn, $gradesTable, $email, $time, $sum, $max, $points){
     if($conn->query($sql) == FALSE){
 	echo "error:" . $sql . "<br>" . $conn->error;
     }
+
+    return $new_entry;
 }
 
-function mail_grade($conn, $hwNo, $email, $grade, $tkey){
-    $to = $email;
-    $subject = "Nonliear Dynamics Online Course : Your grade for $hwNo";
-    $txt = " Your grade: \r\n\r\n";
-    foreach($grade as $key => $value){
-	$txt .= "$key"." : "."$value \r\n";
+function filterNum($str){
+    $int = filter_var($str, FILTER_SANITIZE_NUMBER_INT);
+    return $int;
+}
+
+
+/**
+ * @param[in] grade   an array containing one grade entry
+ */
+function mail_grade($conn, $grade, $keyTable,  $userAnswerAndEmail){
+
+    $hwNo = filterNum($keyTable);
+    $message = formualteMailContent($conn, ($hwNo > 8) + 1, $hwNo, $hwNo, 
+	$grade, $keyTable, $userAnswerAndEmail);
+    $to = str_replace("'", "", $grade['email']);
+
+    $mail = new PHPMailer;
+
+    $mail->SMTPOptions = array(
+	'ssl' => array(
+            'verify_peer' => false,
+		'verify_peer_name' => false,
+		'allow_self_signed' => true
+	)
+    );
+
+    // $mail->SMTPDebug = 2;
+    $mail->isSMTP();                
+    $mail->Host = 'smtp.gmail.com'; 
+    $mail->Port = 587;
+    $mail->SMTPSecure = 'tls'; 
+    $mail->SMTPAuth = true;              
+    $mail->Username = 'phys7224@gmail.com'; 
+    $mail->Password = '!phys7224';            
+    $mail->setFrom('phys7224@gmail.com', 'ChaosBook');
+    $mail->addAddress( "$to" );
+    $mail->addReplyTo('phys7224@gmail.com', 'ChaosBook');
+    $mail->isHTML(true);                                  
+
+    $mail->Subject = 'Nonliear Dynamics Online Course : Your grade';
+    $mail->Body    = $message;
+    //$mail->AddEmbeddedImage("./ChaosGrade_files/right.jpg", "right", "right.jpg");
+    //$mail->AddEmbeddedImage("./ChaosGrade_files/wrong.jpg", "wrong", "wrong.jpg");
+    $mail->AddEmbeddedImage("./ChaosGrade_files/cloud_bg.jpg", "cloud", "cloud_bg.jpg");
+    $mail->AddEmbeddedImage("./ChaosGrade_files/ChaosBookLogo.jpg", "logo", "ChaosBookLogo.jpg");
+
+    if(!$mail->send()) {
+	echo 'Message could not be sent.';
+	echo 'Mailer Error: ' . $mail->ErrorInfo;
+    } else {
+	echo 'Message has been sent <br>';
     }
-    
-    $message = formualteMailContent($courseNo, $weekNo, $hwNo);
-    $txt .= "\r\n ======================================= \r\n";
-    $txt .= "\r\n Assigned points for each problem : \r\n\r\n";
-    
-    $tmp = $conn->query("select question, points from $tkey");
-    while ($answer = $tmp->fetch_assoc()){
-	foreach($answer as $key => $value){
-	    $txt .= "$key" . " : " . "$value \r\n";
-	}
-    }
-    
-    mail($to, $subject, $message);          
+
 }
 
 ?>
