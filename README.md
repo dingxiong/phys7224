@@ -4,6 +4,14 @@ Since this is a public repository. I only include a
 sample homework page, and the database of all answers
 is not uploaded.
 
+Basically, html forms are used to collect user submission. Each question has a
+label : q1, q1, q3, ect. And there is `email` label used for email and a 
+hidden input `hwNo` used to identify the homework number. Once user hits
+`submit` button, file `grade/action.php` is triggered. User's submission
+is inserted to table `hw*_sumbit`. Correct answer from table `hw*_key` is loaded to
+grade ungraded submissions. The graded result is inserted to table `hw*_grades` and
+emailed to user.
+
 ## Components
 
 ### PHPMailer
