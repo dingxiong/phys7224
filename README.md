@@ -4,13 +4,30 @@ Since this is a public repository. I only include a
 sample homework page, and the database of all answers
 is not uploaded.
 
-## prerequite
+Basically, html forms are used to collect user submission. Each question has a
+label : q1, q1, q3, ect. And there is `email` label used for email and a 
+hidden input `hwNo` used to identify the homework number. Once user hits
+`submit` button, file `grade/action.php` is triggered. User's submission
+is inserted to table `hw*_sumbit`. Correct answer from table `hw*_key` is loaded to
+grade ungraded submissions. The graded result is inserted to table `hw*_grades` and
+emailed to user.
+
+## how to change the email style ?
+Email format is encoded in file `formulateMail.php`. It is a mix of html and
+php. You can easily find the part that controls the style of email. Change it,
+Email content will change for next submission.
+
+## Components
+
+### MySQL to store submissions, grades and keys
+Each homework has 3 tables: `hw*_submit`, `hw*_key` and `hw*_grades`, storing users' submission, 
+correct answers, grades respectively. File `writeKeys.php` is used to initialize all these tables.
 
 ### PHPMailer
 
 PHPMailer is a very popular 3rd part library for PHP to 
 send emails. Here it is used to simplify our work.
-We use *composer* to install PHPMailer. Install *composer* :
+We use `composer` to install PHPMailer. Install `composer` :
 ```
 $ cd grader
 $ curl -sS https://getcomposer.org/installer | php
@@ -26,7 +43,71 @@ into it:
 }
 ```
 
-In the command line, type 
+In folder `grader`, open a terminal and type 
 ```
 php composer.phar install
 ```
+PHPMailer now is installed in `vendor` folder
+
+### MathJax
+In each homework html header, put
+```
+<!-- import mathjax.js -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+```
+in order to use MathJax.
+
+### Javascript to valid answer
+Three functions are used to validate users' submission before injecting it into database
+```
+    <script type="text/javascript">
+      
+      function validateDecimal(input, qnum) {
+	  var number = /^[-+]?[0-9]+\.[0-9]+$/;
+	  if(input.value.match(number) ){
+	      return true;
+	  } else {
+	      alert('please input a decimal number for question  ' + qnum);
+	      return false;
+	  }
+      }
+
+      function validateInt(input, qnum){
+	  var number = /^[-+]?[0-9]+$/;  
+	  if(input.value.match(number) ){
+	      return true;
+	  } else {
+	       alert('please input a integer number for question  ' + qnum );
+	      return false;
+	  }
+      }
+      
+      
+      function validateEmail(input) {
+	  var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+	  if ( re.test(input.value)){  
+	      return true;  
+	  } else {
+	      alert("You have entered an invalid email address!");
+	      return false;
+	  }
+      }  
+      
+      function validateSubmit(){
+	  var q1 = validateDecimal(document.homework_form.q1, "q1");
+	  var q2 = validateDecimal(document.homework_form.q2, "q2");
+	  var q3 = validateDecimal(document.homework_form.q3, "q3");
+	  var email = validateEmail(document.homework_form.email);
+
+	  return q1 && q2 && q3 && email;
+      }
+
+    </script>
+```
+Change `validateSubmit` function accordingly for each homework.
+
