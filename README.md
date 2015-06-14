@@ -12,7 +12,16 @@ is inserted to table `hw*_sumbit`. Correct answer from table `hw*_key` is loaded
 grade ungraded submissions. The graded result is inserted to table `hw*_grades` and
 emailed to user.
 
+## how to change the email style ?
+Email format is encoded in file `formulateMail.php`. It is a mix of html and
+php. You can easily find the part that controls the style of email. Change it,
+Email content will change for next submission.
+
 ## Components
+
+### MySQL to store submissions, grades and keys
+Each homework has 3 tables: `hw*_submit`, `hw*_key` and `hw*_grades`, storing users' submission, 
+correct answers, grades respectively. File `writeKeys.php` is used to initialize all these tables.
 
 ### PHPMailer
 
