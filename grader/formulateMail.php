@@ -154,7 +154,7 @@ function formulateGradeTable($conn, $grade, $keyTable, $userAnswerAndEmail){
 </div>
 EOD;
 	$list .= $item;
-	echo $item;
+	//echo $item;
     }
     
     return $list;
