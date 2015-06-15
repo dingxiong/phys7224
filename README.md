@@ -18,8 +18,10 @@ php. You can easily find the part that controls the style of email. Change it,
 Email content will change for next submission.
 
 ## remaining problems
-Background image cannot be used in email html. Even you use it, email 
+* Background image cannot be used in email html. Even you use it, email 
 server will automatically filter it.
+
+* PHPMailer seems not able to change the aspect ratio of inline images.
 
 ## Components
 
