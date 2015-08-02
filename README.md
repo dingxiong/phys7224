@@ -21,7 +21,11 @@ $ pip install django
 $ django-admin.py startproject hws && python manage.py startapp grader
 $ 
 ```
-
+* add grader into INSTALLED_APPS in hws/settings.py
+* add grader.urls into hws/urls.py and change the corresponding urls pattern in grader/urls.py
+* create a folder htmls under top directory and add its path to TEMPLATES in hws/settings.py.
+* create a folder static under top directory to serve figs and css files. Remember to add the path to STATICFILES_DIRS in hws/settings.py.
+* create models and corresponding forms
 ## how to change the email style ?
 Email format is encoded in file `formulateMail.php`. It is a mix of html and
 php. You can easily find the part that controls the style of email. Change it,

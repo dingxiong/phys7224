@@ -1,3 +1,5 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+def hw1(request):
+    return render(request, 'homework1.html')

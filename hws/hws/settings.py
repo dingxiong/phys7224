@@ -13,7 +13,7 @@ SECRET_KEY = '42&z*)f#h-a-(lsux#*d(=#qr6%2xvlt5d$@d@(+4l@l9d&_9e'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -25,6 +25,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'grader'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -43,7 +44,7 @@ ROOT_URLCONF = 'hws.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'htmls')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -88,3 +89,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
