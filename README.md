@@ -12,6 +12,16 @@ is inserted to table `hw*_sumbit`. Correct answer from table `hw*_key` is loaded
 grade ungraded submissions. The graded result is inserted to table `hw*_grades` and
 emailed to user.
 
+## steps
+```
+$ sudo apt-get install apache2 libapache2-mod-wsgi
+$ mkdir hws && cd hws
+$ virtual venv && source venv/bin/activate
+$ pip install django
+$ django-admin.py startproject hws && python manage.py startapp grader
+$ 
+```
+
 ## how to change the email style ?
 Email format is encoded in file `formulateMail.php`. It is a mix of html and
 php. You can easily find the part that controls the style of email. Change it,
