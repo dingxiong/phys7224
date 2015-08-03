@@ -1,0 +1,34 @@
+{% extends "base1st.html" %}
+{% load staticfiles %}
+
+{% block homework %}
+
+<h2 class="course-page-header">
+    Homework 1  
+</h2>
+
+<!-- -------------------------------------------------- -->
+<!-- the content of homework -->
+<div class="course-quiz-preamble">
+    In the following exercises, we are going to get familiar with the 
+    Roessler system, which is a simple ODE system that exhibits chaos. 
+    You can download the python script templates for Questions 3-5 from 
+    <a href="scripts/Rossler.zip">here</a> (right click, "save as").     
+    If you prefer to use some other programming language for these
+    problems, please download and read the code as the comments 
+    are intended to guide you through the algorithm.
+</div>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label>q1: </label>
+    {{hwForm.q1}}
+</form>
+
+<img src="{% static "figs/RosslerPoincare1.png" %}" width=200>
+<img src="{% static "figs/RosslerPoincare2.png" %}" width=200>
+<img src="{% static "figs/RosslerPoincare3.png" %}" width=200>
+
+
+
+{% endblock %}

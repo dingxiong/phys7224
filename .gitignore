@@ -1,3 +1,4 @@
 *.pyc
 *~
 venv
+hws/static_root

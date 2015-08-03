@@ -1,0 +1,33 @@
+{% extends "base1st.html" %}
+{% load staticfiles %}
+
+{% block homework %}
+
+<h2 class="course-page-header">
+    Homework 2
+</h2>
+
+<!-- -------------------------------------------------- -->
+<!-- the content of homework -->
+<div class="course-quiz-preamble">
+    You can download the template program for question 4 and 5 from 
+    <a href="scripts/Rossler.zip">here</a> (right click, "save as"). 
+</div>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label> </label>
+    {{hwForm.q1}}
+    
+    {{hwForm.q2}}
+    {{hwForm.q3}}
+    {{hwForm.q4}}
+    {{hwForm.q5}} <br>
+    <label>Email:</label>
+    {{hwForm.email}}
+    <input type="submit" value="Submit">
+</form>
+
+
+
+{% endblock %}
