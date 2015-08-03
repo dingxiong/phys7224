@@ -1,6 +1,8 @@
+import os
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "hws.settings")
+
 from django.contrib.auth.models import User
 from grader.models import *
-
 
 print User.objects.all()
 
@@ -24,7 +26,7 @@ k.save()
 
 ############################################################
 # hw 4
-k = Hw4_key(qname='q1', qtitle="Q4.1 \(D_3\): symmetries of an equilateral triangle (ChaosBook.org version14.5.7, exercise 9.5 a)", qtype='choice', numberAnswer='2nd',  qpoints=3)
+k = Hw4_key(qname='q1', qtitle="Q4.1 \(D_3\): symmetries of an equilateral triangle (ChaosBook.org version14.5.7, exercise 9.5 a)", qtype='choice', choiceAnswer='2nd',  qpoints=3)
 k.save()
 
 k = Hw4_key(qname='q2', qtitle="Q4.2  \(D_3\): symmetries of a three-billiard game", qtype='choice', choiceAnswer='3rd', qpoints=3)

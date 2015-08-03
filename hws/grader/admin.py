@@ -4,4 +4,7 @@ from .models import *
 admin.site.register(Hw2_submit)
 admin.site.register(Hw2_key)
 
+admin.site.register(Hw4_submit)
+admin.site.register(Hw4_key)
+
 
