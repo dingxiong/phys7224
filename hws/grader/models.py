@@ -47,6 +47,7 @@ class Hw2_submit(models.Model):
     g4 = models.FloatField(blank=True, default=0)
     g5 = models.FloatField(blank=True, default=0)
     gs = models.FloatField(blank=True, default=0)    # total points
+    gf = models.FloatField(blank=True, default=0)    # full points
     gp = models.FloatField(blank=True, default=0)    # percentage
 
     def __str__(self):
@@ -54,12 +55,19 @@ class Hw2_submit(models.Model):
 
 
 class Hw2_key(models.Model):
+    # name of the question
     qname = models.CharField(max_length=20)
+    # title of the question
     qtitle = models.CharField(max_length=800)
+    # type of the question. only 'number' or 'choice'
     qtype = models.CharField(max_length=20, default='number')
+    # answer for choice type question
     choiceAnswer = models.CharField(max_length=300, default="first")
+    # answer for number type quesiton
     numberAnswer = models.FloatField(default=0)
+    # tolerance for number type question
     qtol = models.FloatField(default=0.001)
+    # points of this question
     qpoints = models.FloatField()
 
     def __str__(self):

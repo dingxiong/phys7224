@@ -2,8 +2,11 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.utils import timezone
+from django.template.loader import get_template
+from django.template import Context
+from django.core.mail import EmailMultiAlternatives
 from .forms import *
-
+from .info import *
 
 def submitted(request):
     return render(request, 'submitted.html')
@@ -31,12 +34,20 @@ def hw2(request):
             q4 = hw2Form.cleaned_data['q4']
             q5 = hw2Form.cleaned_data['q5']
             points = grade(Hw2_key, {'q1': q1, 'q2': q2, 'q3': q3, 'q4': q4, 'q5': q5})
+            emailGrade(2, courseLinks[1], courseNames[1],
+                       weekLinks[2], 'week 2',
+                       homeworkLinks[2], 'homework 2',
+                       points['gs'], points['gf'], (int)(points['gp']*100),
+                       email, timezone.now(),
+                       {}
+            )
             item = Hw2_submit(email=email, q1=q1, q2=q2,
                               q3=q3, q4=q4, q5=q5,
                               g1=points['q1'], g2=points['q2'],
                               g3=points['q3'], g4=points['q4'],
                               g5=points['q5'], gs=points['gs'],
-                              gp=points['gp'], hasGraded=True,
+                              gf=points['gf'], gp=points['gp'],
+                              hasGraded=True,
                               time=timezone.now()
             )
             item.save()
@@ -75,6 +86,45 @@ def grade(keyTable, answer):
             print "wrong type"
 
     points['gs'] = s
+    points['gf'] = full
     points['gp'] = s / full
 
     return points
+
+
+######################################################################
+#                      email function                                #
+######################################################################
+
+
+def emailGrade(hwNo, courseLink, courseName, weekLink, weekName,
+               homeworkLink, homeworkName, gradeSum, gradeFull,
+               percent, email, time, gradeTable):
+    htmlMsg = get_template('baseEmail.html')
+    textMsg = get_template('baseEmail.txt')
+    d = Context({
+        'hwNo': hwNo,
+        'courseLink': courseLink,
+        'courseName': courseName,
+        'weekLink': weekLink,
+        'weekName': weekName,
+        'homeworkLink': homeworkLink,
+        'homeworkName': homeworkName,
+        'gradeSum': gradeSum,
+        'gradeFull': gradeFull,
+        'percent': percent,
+        'email': email,
+        'time': time,
+        'gradeTable': gradeTable
+    })
+    
+    subject = 'Your grade for ' + homeworkName
+    fromEamil = 'phys7224@gmail.com'
+    to = email
+    txtContent = textMsg.render(d)
+    htmlContent = htmlMsg.render(d)
+    
+    msg = EmailMultiAlternatives(subject, txtContent, fromEamil, [to])
+    msg.attach_alternative(htmlContent, "text/html")
+    msg.send()
+    

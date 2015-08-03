@@ -93,3 +93,10 @@ STATIC_ROOT = '/home/xding/00git/phys7224/hws/static_root/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'phys7224@gmail.com'
+EMAIL_HOST_PASSWORD = '!phys7224'
+EMAIL_PORT = 587
