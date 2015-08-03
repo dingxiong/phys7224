@@ -33,7 +33,9 @@ def hw2(request):
             q3 = hw2Form.cleaned_data['q3']
             q4 = hw2Form.cleaned_data['q4']
             q5 = hw2Form.cleaned_data['q5']
-            points, gradeTable = grade(Hw2_key, {'q1': q1, 'q2': q2, 'q3': q3, 'q4': q4, 'q5': q5})
+            points, gradeTable = grade(Hw2_key,
+                                       {'q1': q1, 'q2': q2, 'q3': q3, 'q4': q4, 'q5': q5},
+                                       Hw2Form())
             emailGrade(2, courseLinks[1], courseNames[1],
                        weekLinks[2], 'week 2',
                        homeworkLinks[2], 'homework 2',
@@ -58,11 +60,48 @@ def hw2(request):
                   {'hwForm': Hw2Form()})
 
 
+def hw4(request):
+    if request.method == 'POST':
+        hw4Form = Hw4Form(request.POST)
+        if hw4Form.is_valid():
+            email = hw4Form.cleaned_data['email']
+            q1 = hw4Form.cleaned_data['q1']
+            q2 = hw4Form.cleaned_data['q2']
+            q3 = hw4Form.cleaned_data['q3']
+            q4 = hw4Form.cleaned_data['q4']
+            q5 = hw4Form.cleaned_data['q5']
+            points, gradeTable = grade(Hw4_key,
+                                       {'q1': q1, 'q2': q2, 'q3': q3, 'q4': q4, 'q5': q5},
+                                       Hw4Form())
+            emailGrade(4, courseLinks[1], courseNames[1],
+                       weekLinks[4], 'week 4',
+                       homeworkLinks[4], 'homework 4',
+                       points['gs'], points['gf'], (int)(points['gp']*100),
+                       email, timezone.now(),
+                       gradeTable
+            )
+            item = Hw4_submit(email=email, q1=q1, q2=q2,
+                              q3=q3, q4=q4, q5=q5,
+                              g1=points['q1'], g2=points['q2'],
+                              g3=points['q3'], g4=points['q4'],
+                              g5=points['q5'], gs=points['gs'],
+                              gf=points['gf'], gp=points['gp'],
+                              hasGraded=True,
+                              time=timezone.now()
+            )
+            item.save()
+            return HttpResponseRedirect(reverse('submitted'))
+
+    # default action
+    return render(request, 'homework4.html',
+                  {'hwForm': Hw4Form()})
+
+
 ######################################################################
 #                      grade function                                #
 ######################################################################
 
-def grade(keyTable, answer):
+def grade(keyTable, answer, form):
     points = {}
 
     # a list of dic {full, color, points, answer, title}
@@ -76,8 +115,8 @@ def grade(keyTable, answer):
         item = {}
         item['full'] = x.qpoints
         item['title'] = x.qtitle
-        item['answer'] = value
         if x.qtype == 'number':
+            item['answer'] = value
             if value is not None and abs(value - x.numberAnswer) <= x.qtol:
                 points[name] = x.qpoints
                 s += x.qpoints
@@ -89,6 +128,7 @@ def grade(keyTable, answer):
                 item['color'] = '#FF3333'
                 
         elif x.qtype == 'choice':
+            item['answer'] = dict(form.fields[name].choices)[value]
             if value is not None and value == x.choiceAnswer:
                 points[name] = x.qpoints
                 s += x.qpoints
