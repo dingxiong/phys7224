@@ -28,9 +28,15 @@ $
 * create models and corresponding forms
 * write the initialization file to fill out all the answer tables
 * run `python manage.py collectstatic` to collect all static files to the static_root folder
+* create superuser
+  ```
+  python manage.py createsuperuser
+  ```
 * change the perssion of database files and related folders
-
-
+  ```
+  sudo chown www-data:www-data hws
+  sudo chown www-data:www-data db.sqlite3
+  ```
 ## how to change the email style ?
 Email format is encoded in file `formulateMail.php`. It is a mix of html and
 php. You can easily find the part that controls the style of email. Change it,

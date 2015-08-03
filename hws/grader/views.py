@@ -33,13 +33,13 @@ def hw2(request):
             q3 = hw2Form.cleaned_data['q3']
             q4 = hw2Form.cleaned_data['q4']
             q5 = hw2Form.cleaned_data['q5']
-            points = grade(Hw2_key, {'q1': q1, 'q2': q2, 'q3': q3, 'q4': q4, 'q5': q5})
+            points, gradeTable = grade(Hw2_key, {'q1': q1, 'q2': q2, 'q3': q3, 'q4': q4, 'q5': q5})
             emailGrade(2, courseLinks[1], courseNames[1],
                        weekLinks[2], 'week 2',
                        homeworkLinks[2], 'homework 2',
                        points['gs'], points['gf'], (int)(points['gp']*100),
                        email, timezone.now(),
-                       {}
+                       gradeTable
             )
             item = Hw2_submit(email=email, q1=q1, q2=q2,
                               q3=q3, q4=q4, q5=q5,
@@ -64,32 +64,50 @@ def hw2(request):
 
 def grade(keyTable, answer):
     points = {}
+
+    # a list of dic {full, color, points, answer, title}
+    gradeTable = []
+
     full = 0.0
     s = 0.0
     for name, value in answer.iteritems():
         x = keyTable.objects.get(qname=name)
         full += x.qpoints
+        item = {}
+        item['full'] = x.qpoints
+        item['title'] = x.qtitle
+        item['answer'] = value
         if x.qtype == 'number':
             if abs(value - x.numberAnswer) <= x.qtol:
                 points[name] = x.qpoints
                 s += x.qpoints
+                item['points'] = x.qpoints
+                item['color'] = '#06ac06'
             else:
                 points[name] = 0
+                item['points'] = 0
+                item['color'] = '#FF3333'
                 
         elif x.qtype == 'choice':
             if value == x.choiceAnswer:
                 points[name] = x.qpoints
                 s += x.qpoints
+                item['points'] = x.qpoints
+                item['color'] = '#06ac06'
             else:
                 points[name] = 0
-        else :
+                item['points'] = 0
+                item['color'] = '#FF3333'
+        else:
             print "wrong type"
+
+        gradeTable.append(item)
 
     points['gs'] = s
     points['gf'] = full
     points['gp'] = s / full
 
-    return points
+    return points, gradeTable
 
 
 ######################################################################
@@ -127,4 +145,5 @@ def emailGrade(hwNo, courseLink, courseName, weekLink, weekName,
     msg = EmailMultiAlternatives(subject, txtContent, fromEamil, [to])
     msg.attach_alternative(htmlContent, "text/html")
     msg.send()
+    
     
