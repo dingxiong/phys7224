@@ -34,7 +34,7 @@ $
   ```
 * change the perssion of database files and related folders  
   ```
-  sudo chown www-data:www-data hws
+  sudo chown www-data:www-data hws  
   sudo chown www-data:www-data db.sqlite3
   ```
   
