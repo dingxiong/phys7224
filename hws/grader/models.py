@@ -35,11 +35,11 @@ class Hw2_submit(models.Model):
     time = models.DateTimeField()
     hasGraded = models.BooleanField(default=False)
     
-    q1 = models.FloatField()
-    q2 = models.CharField(max_length=500)
-    q3 = models.CharField(max_length=500)
-    q4 = models.FloatField()
-    q5 = models.CharField(max_length=500)
+    q1 = models.FloatField(blank=True, null=True)
+    q2 = models.CharField(blank=True, max_length=500)
+    q3 = models.CharField(blank=True, max_length=500)
+    q4 = models.FloatField(blank=True, null=True)
+    q5 = models.CharField(blank=True, max_length=500)
 
     g1 = models.FloatField(blank=True, default=0)
     g2 = models.FloatField(blank=True, default=0)

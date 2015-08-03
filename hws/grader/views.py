@@ -78,7 +78,7 @@ def grade(keyTable, answer):
         item['title'] = x.qtitle
         item['answer'] = value
         if x.qtype == 'number':
-            if abs(value - x.numberAnswer) <= x.qtol:
+            if value is not None and abs(value - x.numberAnswer) <= x.qtol:
                 points[name] = x.qpoints
                 s += x.qpoints
                 item['points'] = x.qpoints
@@ -89,7 +89,7 @@ def grade(keyTable, answer):
                 item['color'] = '#FF3333'
                 
         elif x.qtype == 'choice':
-            if value == x.choiceAnswer:
+            if value is not None and value == x.choiceAnswer:
                 points[name] = x.qpoints
                 s += x.qpoints
                 item['points'] = x.qpoints

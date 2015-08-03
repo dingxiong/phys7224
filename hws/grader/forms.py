@@ -20,13 +20,15 @@ class Hw1Form(forms.ModelForm):
 
 class Hw2Form(forms.ModelForm):
 
-    q2 = forms.ChoiceField(widget=forms.RadioSelect,
+    q2 = forms.ChoiceField(required=False,
+                           widget=forms.RadioSelect,
                            choices=(
                                ('Stable', 'Stable'),
                                ('Unstable', 'Unstable'),
                            ))
     
-    q3 = forms.ChoiceField(widget=forms.RadioSelect,
+    q3 = forms.ChoiceField(required=False,
+                           widget=forms.RadioSelect,
                            choices=(
                                ('-2', '-2'),
                                ('-1', '-1'),
@@ -35,7 +37,8 @@ class Hw2Form(forms.ModelForm):
                                ('2', '2'),
                            ))
 
-    q5 = forms.ChoiceField(widget=forms.RadioSelect,
+    q5 = forms.ChoiceField(required=False,
+                           widget=forms.RadioSelect,
                            choices=(
                                ('Pink', 'Pink'),
                                ('Black', 'Black'),

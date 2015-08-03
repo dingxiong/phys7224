@@ -26,6 +26,10 @@ $
 * create a folder htmls under top directory and add its path to TEMPLATES in hws/settings.py.
 * create a folder static under top directory to serve figs and css files. Remember to add the path to STATICFILES_DIRS in hws/settings.py.
 * create models and corresponding forms
+  **Note:**
+  1. specify float field as `null=True` and `blank=True`.
+  2. specify char field as `blank=True`.
+  3. each form field, except email, should be specified as `required=False`
 * write the initialization file to fill out all the answer tables
 * run `python manage.py collectstatic` to collect all static files to the static_root folder
 * create superuser  
@@ -34,7 +38,7 @@ $
   ```
 * change the perssion of database files and related folders  
   ```
-  sudo chown www-data:www-data hws  
+  sudo chown www-data:www-data hws &&
   sudo chown www-data:www-data db.sqlite3
   ```
   
