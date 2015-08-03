@@ -26,6 +26,11 @@ $
 * create a folder htmls under top directory and add its path to TEMPLATES in hws/settings.py.
 * create a folder static under top directory to serve figs and css files. Remember to add the path to STATICFILES_DIRS in hws/settings.py.
 * create models and corresponding forms
+* write the initialization file to fill out all the answer tables
+* run `python manage.py collectstatic` to collect all static files to the static_root folder
+* change the perssion of database files and related folders
+
+
 ## how to change the email style ?
 Email format is encoded in file `formulateMail.php`. It is a mix of html and
 php. You can easily find the part that controls the style of email. Change it,
