@@ -28,11 +28,11 @@ $
 * create models and corresponding forms
 * write the initialization file to fill out all the answer tables
 * run `python manage.py collectstatic` to collect all static files to the static_root folder
-* create superuser 
+* create superuser  
   ```
   python manage.py createsuperuser
   ```
-* change the perssion of database files and related folders 
+* change the perssion of database files and related folders  
   ```
   sudo chown www-data:www-data hws
   sudo chown www-data:www-data db.sqlite3
