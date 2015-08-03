@@ -63,7 +63,7 @@ class Hw4Form(forms.ModelForm):
                                 r'\(\{ e, \sigma_{12}, \sigma_{23}, \sigma_{31}, C^{1/3}, C^{2/3}\}\)'),
                                ('3rd',
                                 r'\( \{\sigma_{12}, \sigma_{23}, \sigma_{31} \} \)'),
-                               ('4rd',
+                               ('4th',
                                 r'\( \{C^{1/3}, C^{2/3} \} \)'),
                            ))
     
@@ -73,7 +73,7 @@ class Hw4Form(forms.ModelForm):
                                ('1st', r'\( T_p \)'),
                                ('2nd', r'\( 2T_p\)'),
                                ('3rd', r'\( 3T_p \)'),
-                               ('4rd', r'\( 6T_p \)'),
+                               ('4th', r'\( 6T_p \)'),
                            ))
 
     q5 = forms.ChoiceField(required=False,
@@ -95,4 +95,49 @@ class Hw4Form(forms.ModelForm):
         model = Hw4_submit
         fields = ['q1', 'q2', 'q3', 'q4', 'q5', 'email']
 
-# 
+
+class Hw5Form(forms.ModelForm):
+
+    q1 = forms.ChoiceField(required=False,
+                           widget=forms.RadioSelect,
+                           choices=(
+                               ('1st',
+                                r'\( T_\tau = T_1\) , \(T_\rho = T_1 \)'),
+                               ('2nd',
+                                r'\( T_\tau = T_1\) , \(T_\rho = T_2 \)'),
+                               ('3rd',
+                                r'\( T_\tau = T_2\) , \(T_\rho = T_1 \)'),
+                               ('4th',
+                                r'\( T_\tau = T_2\) , \(T_\rho = T_2 \)'),
+                           ))
+    
+    q2 = forms.ChoiceField(required=False,
+                           widget=forms.RadioSelect,
+                           choices=(
+                               ('1st', 0),
+                               ('2nd', 1),
+                               ('3rd', 2),
+                               ('4th', 3),
+                               ('5th', 'none of above')
+                           ))
+
+    q5 = forms.ChoiceField(required=False,
+                           widget=forms.RadioSelect,
+                           choices=(
+                               ('1st',
+                                r'\( J_p(x)t(x) = t(x) \)'),
+                               ('2nd',
+                                r'\( J_p(x)t(x) = g(\phi_p)t(x) \)'),
+                               ('3rd',
+                                r'\( J_p(x)t(x) = g(-\phi_p)t(x) \)'),
+                               ('4th',
+                                r'\( J_p(x)t(x) = t\left(g(\phi_p)x\right) \)'),
+                               ('5th',
+                                r'\( J_p(x)t(x) = t\left(g(-\phi_p)x\right) \)'),
+                           ))
+
+    class Meta:
+        model = Hw5_submit
+        fields = ['q1', 'q2', 'q3', 'q4', 'q5', 'email']
+
+

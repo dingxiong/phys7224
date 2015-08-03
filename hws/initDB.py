@@ -41,3 +41,20 @@ k.save()
 k = Hw4_key(qname='q5', qtitle='Q4.5  \(C_n\): cyclic group by a single element', qtype='choice', choiceAnswer='4th', qpoints=4)
 k.save()
 
+############################################################
+# hw 5
+k = Hw5_key(qname='q1', qtitle="Q5.1  generator of continuous symmetry", qtype='choice', choiceAnswer='2nd',  qpoints=2)
+k.save()
+
+k = Hw5_key(qname='q2', qtitle="Q5.2   Two modes system (Chapter 13 Excercise 13.7)", qtype='choice', choiceAnswer='3rd', qpoints=2)
+k.save()
+
+k = Hw5_key(qname='q3', qtitle='Q5.3  Two modes system continued: relative equilibria', qtype='number', numberAnswer='-0.5440841', qtol=0.3, qpoints=3)
+k.save()
+
+k = Hw5_key(qname='q4', qtitle='Q5.4  Two modes system continued: Poincare return map', qtype='number', numberAnswer='0.908', qtol=0.1, qpoints=4)
+k.save()
+
+k = Hw5_key(qname='q5', qtitle='Q5.5  Jacobian of a relative periodic orbit', qtype='choice', choiceAnswer='1st', qpoints=3)
+k.save()
+

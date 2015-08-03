@@ -97,6 +97,43 @@ def hw4(request):
                   {'hwForm': Hw4Form()})
 
 
+def hw5(request):
+    if request.method == 'POST':
+        hw5Form = Hw5Form(request.POST)
+        if hw5Form.is_valid():
+            email = hw5Form.cleaned_data['email']
+            q1 = hw5Form.cleaned_data['q1']
+            q2 = hw5Form.cleaned_data['q2']
+            q3 = hw5Form.cleaned_data['q3']
+            q4 = hw5Form.cleaned_data['q4']
+            q5 = hw5Form.cleaned_data['q5']
+            points, gradeTable = grade(Hw5_key,
+                                       {'q1': q1, 'q2': q2, 'q3': q3, 'q4': q4, 'q5': q5},
+                                       Hw5Form())
+            emailGrade(5, courseLinks[1], courseNames[1],
+                       weekLinks[5], 'week 5',
+                       homeworkLinks[5], 'homework 5',
+                       points['gs'], points['gf'], (int)(points['gp']*100),
+                       email, timezone.now(),
+                       gradeTable
+            )
+            item = Hw5_submit(email=email, q1=q1, q2=q2,
+                              q3=q3, q4=q4, q5=q5,
+                              g1=points['q1'], g2=points['q2'],
+                              g3=points['q3'], g4=points['q4'],
+                              g5=points['q5'], gs=points['gs'],
+                              gf=points['gf'], gp=points['gp'],
+                              hasGraded=True,
+                              time=timezone.now()
+            )
+            item.save()
+            return HttpResponseRedirect(reverse('submitted'))
+
+    # default action
+    return render(request, 'homework5.html',
+                  {'hwForm': Hw5Form()})
+
+
 ######################################################################
 #                      grade function                                #
 ######################################################################
