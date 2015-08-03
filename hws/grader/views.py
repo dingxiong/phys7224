@@ -70,7 +70,7 @@ def grade(keyTable, answer):
 
     full = 0.0
     s = 0.0
-    for name, value in answer.iteritems():
+    for name, value in sorted(answer.iteritems()):
         x = keyTable.objects.get(qname=name)
         full += x.qpoints
         item = {}
