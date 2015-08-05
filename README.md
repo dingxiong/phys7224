@@ -10,7 +10,9 @@ modify the web page content and access the content of database.
 
 # prerequisite 
 In order to deploy `django` in `Apache`, we need to do two things:
-1. install `mod-swgi` Apache module. In Ubuntu, `sudo apt-get install libapache2-mod-wsgi`
+
+1 install `mod-swgi` Apache module. In Ubuntu, `sudo apt-get install libapache2-mod-wsgi`
+
 2. modify the Apache configuration file to indicate the right path to the homework
 folder and grand write permission to user group `www-data` to that folder.
 In Ubuntu, this file lives under /etc/apache2/sites-available/.  
