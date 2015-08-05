@@ -11,15 +11,24 @@ modify the web page content and access the content of database.
 # prerequisite 
 In order to deploy `django` in `Apache`, we need to do two things:
 
-1 install `mod-swgi` Apache module. In Ubuntu, `sudo apt-get install libapache2-mod-wsgi`
+1. install `mod-swgi` Apache module. In Ubuntu, `sudo apt-get install libapache2-mod-wsgi`
 
 2. modify the Apache configuration file to indicate the right path to the homework
-folder and grand write permission to user group `www-data` to that folder.
-In Ubuntu, this file lives under /etc/apache2/sites-available/.  
-File `000-default.conf` in this repository shows a sample Apache configuration.
+   folder and grand write permission to user group `www-data` to that folder.
+   In Ubuntu, this file lives under /etc/apache2/sites-available/.
+   File `000-default.conf` in this repository shows a sample Apache configuration.
 
-Also, note that during the setup, we need to restart Apache server a few times.
+**Note : **
+1. During the setup, we need to restart Apache server a few times.
+2. We will create a virtual python environment to serve the web pages, or worst, install a local
+   version of python if the default version is not advanced enough.
 
+# safety problem
+I am not familiar with this problem. But, as you can see from the sample
+`000-defult.conf` file, we are trying to grand permission to a folder under
+a user's home folder ( probably Prof. Predrag's home folder).
+
+I am not sure whether this will cause vulnerability of system files.
 
 ## the steps I followed to set it up in my laptop (just to record the steps).
 ```
