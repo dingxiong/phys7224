@@ -4,9 +4,10 @@ This grader is written under `python-django` platform.
 Basically, homework htmls are saved as django templates and grader is only a function
 in the view class. Also we use the default `sqlite` database.
 
+We put the course folder under Prof. Predrag's home folder.
 In this way,
 we obtain maximal flexibility and simplicity such that my adviser can
-modify the web page content and access the content of database. 
+modify the web page content and access database. 
 
 # prerequisite 
 In order to deploy `django` in `Apache`, we need to do two things:
