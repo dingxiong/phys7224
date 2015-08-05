@@ -19,7 +19,9 @@ In order to deploy `django` in `Apache`, we need to do two things:
    File `000-default.conf` in this repository shows a sample Apache configuration.
 
 **Note :**
+
 1. During the setup, we need to restart Apache server a few times.
+
 2. We will create a virtual python environment to serve the web pages, or worst, install a local
    version of python if the default version is not advanced enough.
 
