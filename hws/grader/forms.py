@@ -56,7 +56,7 @@ class Hw2Form(forms.ModelForm):
 class Hw3Form(forms.ModelForm):
 
     class Meta:
-        model = Hw1_submit
+        model = Hw3_submit
         fields = ['q1', 'q2', 'q3', 'email']
 
 
