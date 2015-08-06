@@ -8,15 +8,42 @@ from django.core.mail import EmailMultiAlternatives
 from .forms import *
 from .info import *
 
+
 def submitted(request):
     return render(request, 'submitted.html')
 
 
 def hw1(request):
     if request.method == 'POST':
-        
-        return render(request, 'homework1.html',
-                      {'hwForm': Hw1Form()})
+        hw1Form = Hw1Form(request.POST)
+        if hw1Form.is_valid():
+            email = hw1Form.cleaned_data['email']
+            q1 = hw1Form.cleaned_data['q1']
+            q2 = hw1Form.cleaned_data['q2']
+            q3 = hw1Form.cleaned_data['q3']
+            q4 = hw1Form.cleaned_data['q4']
+            q5 = hw1Form.cleaned_data['q5']
+            points, gradeTable = grade(Hw1_key,
+                                       {'q1': q1, 'q2': q2, 'q3': q3, 'q4': q4, 'q5': q5},
+                                       Hw1Form())
+            emailGrade(1, courseLinks[1], courseNames[1],
+                       weekLinks[1], 'week 1',
+                       homeworkLinks[1], 'homework 1',
+                       points['gs'], points['gf'], (int)(points['gp']*100),
+                       email, timezone.now(),
+                       gradeTable
+            )
+            item = Hw1_submit(email=email, q1=q1, q2=q2,
+                              q3=q3, q4=q4, q5=q5,
+                              g1=points['q1'], g2=points['q2'],
+                              g3=points['q3'], g4=points['q4'],
+                              g5=points['q5'], gs=points['gs'],
+                              gf=points['gf'], gp=points['gp'],
+                              hasGraded=True,
+                              time=timezone.now()
+            )
+            item.save()
+            return HttpResponseRedirect(reverse('submitted'))
 
     # default action
     return render(request, 'homework1.html',
@@ -222,5 +249,3 @@ def emailGrade(hwNo, courseLink, courseName, weekLink, weekName,
     msg = EmailMultiAlternatives(subject, txtContent, fromEamil, [to])
     msg.attach_alternative(htmlContent, "text/html")
     msg.send()
-    
-    

@@ -5,7 +5,8 @@ from .models import *
 
 class Hw1Form(forms.ModelForm):
 
-    q1 = forms.ChoiceField(widget=forms.RadioSelect,
+    q1 = forms.ChoiceField(required=False,
+                           widget=forms.RadioSelect,
                            choices=(
                                ('1st', '1'),
                                ('2nd', '2'),
