@@ -1,5 +1,6 @@
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+from .settings_secret import emailPassword, secretKey
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -8,12 +9,18 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '42&z*)f#h-a-(lsux#*d(=#qr6%2xvlt5d$@d@(+4l@l9d&_9e'
+SECRET_KEY = secretKey
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['http://128.61.58.51/']
+# for local Apache 
+ALLOWED_HOSTS = ['128.61.58.51']
+# for local django runserver
+# ALLOWED_HOSTS = ['127.0.0.1']
+# for deployment in Copenhagen server
+# ALLOWED_HOSTS = ['128.61.58.51']
+
 
 # not allowed to serve the website in a frame
 X_FRAME_OPTIONS = 'DENY'
@@ -100,5 +107,5 @@ STATICFILES_DIRS = (
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'phys7224@gmail.com'
-EMAIL_HOST_PASSWORD = '!phys7224'
+EMAIL_HOST_PASSWORD = emailPassword
 EMAIL_PORT = 587
