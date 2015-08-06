@@ -11,9 +11,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '42&z*)f#h-a-(lsux#*d(=#qr6%2xvlt5d$@d@(+4l@l9d&_9e'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['http://128.61.58.51/']
 
 # not allowed to serve the website in a frame
 X_FRAME_OPTIONS = 'DENY'
