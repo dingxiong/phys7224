@@ -11,16 +11,16 @@ print User.objects.all()
 k = Hw1_key(qname='q1', qtitle="Q1.1   Equilibria of the Roessler flow (ChaosBook.org version14.5.7, exercise 2.8 a)", qtype='choice', choiceAnswer='2nd', qpoints=1)
 k.save()
 
-k = Hw1_key(qname='q2', qtitle="Q1.2   Equilibria of the Roessler flow (ChaosBook.org version14.5.7, exercise 2.8 b)", qtype='number', numberAnser=0.007, qtol=0.0001, qpoints=3)
+k = Hw1_key(qname='q2', qtitle="Q1.2   Equilibria of the Roessler flow (ChaosBook.org version14.5.7, exercise 2.8 b)", qtype='number', numberAnswer=0.007, qtol=0.0001, qpoints=3)
 k.save()
 
-k = Hw1_key(qname='q3', qtitle='Q1.3   Runge-Kutta integration', qtype='number', numberAnswer=-0.839, qtol=0.007, qpoints=3)
+k = Hw1_key(qname='q3', qtitle="Q1.3   Runge-Kutta integration", qtype='number', numberAnswer=-0.839, qtol=0.007, qpoints=3)
 k.save()
 
-k = Hw1_key(qname='q4', qtitle='Q1.4   Integrating Roessler system', qtype='number', numberAnswer=-5.56, qtol=0.07, qpoints=4)
+k = Hw1_key(qname='q4', qtitle="Q1.4   Integrating Roessler system", qtype='number', numberAnswer=-5.56, qtol=0.07, qpoints=4)
 k.save()
 
-k = Hw1_key(qname='q5', qtitle='Q1.5   Poincaré sections and return maps of the Rössler system', qtype='number', numberAnswer=8.38, qtol=0.08, qpoints=5)
+k = Hw1_key(qname='q5', qtitle="Q1.5   Poincare sections and return maps of the Rossler system", qtype='number', numberAnswer=8.38, qtol=0.08, qpoints=5)
 k.save()
 
 ############################################################
