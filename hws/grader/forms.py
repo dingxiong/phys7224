@@ -53,6 +53,13 @@ class Hw2Form(forms.ModelForm):
         fields = ['q1', 'q2', 'q3', 'q4', 'q5', 'email']
 
 
+class Hw3Form(forms.ModelForm):
+
+    class Meta:
+        model = Hw1_submit
+        fields = ['q1', 'q2', 'q3', 'email']
+
+
 class Hw4Form(forms.ModelForm):
 
     q1 = forms.ChoiceField(required=False,

@@ -41,6 +41,18 @@ k = Hw2_key(qname='q5', qtitle='Q2.5   Stability of a periodic orbit', qtype='ch
 k.save()
 
 ############################################################
+# hw 3
+9.1763920190214154 %to 9.3617736759713441 -0.0001 %to 0.0001 2.5557768472751596 %to 2.6074087027756678
+k = Hw3_key(qname='q1', qtitle="Q3.1   Shortest periodic orbit of the Rössler system ( x coordinate )", qtype='number', numberAnswer=9.265, qtol=0.1, qpoints=3)
+k.save()
+
+k = Hw3_key(qname='q2', qtitle="Q3.2   Shortest periodic orbit of the Rössler system ( y coordinate )", qtype='number', numberAnswer=0, qtol=0.0002, qpoints=3)
+k.save()
+
+k = Hw3_key(qname='q3', qtitle="Q3.3   Shortest periodic orbit of the Rössler system ( z coordinate )", qtype='number', numberAnswer=2.575, qtol=0.03, qpoints=4)
+k.save()
+
+############################################################
 # hw 4
 k = Hw4_key(qname='q1', qtitle="Q4.1 \(D_3\): symmetries of an equilateral triangle (ChaosBook.org version14.5.7, exercise 9.5 a)", qtype='choice', choiceAnswer='2nd',  qpoints=3)
 k.save()

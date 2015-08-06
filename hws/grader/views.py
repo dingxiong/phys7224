@@ -87,6 +87,40 @@ def hw2(request):
                   {'hwForm': Hw2Form()})
 
 
+def hw3(request):
+    if request.method == 'POST':
+        hw3Form = Hw3Form(request.POST)
+        if hw3Form.is_valid():
+            email = hw3Form.cleaned_data['email']
+            q1 = hw3Form.cleaned_data['q1']
+            q2 = hw3Form.cleaned_data['q2']
+            q3 = hw3Form.cleaned_data['q3']
+            points, gradeTable = grade(Hw3_key,
+                                       {'q1': q1, 'q2': q2, 'q3': q3},
+                                       Hw3Form())
+            emailGrade(3, courseLinks[1], courseNames[1],
+                       weekLinks[3], 'week 3',
+                       homeworkLinks[3], 'homework 3',
+                       points['gs'], points['gf'], (int)(points['gp']*100),
+                       email, timezone.now(),
+                       gradeTable
+            )
+            item = Hw3_submit(email=email, q1=q1, q2=q2,
+                              q3=q3,
+                              g1=points['q1'], g2=points['q2'],
+                              g3=points['q3'], gs=points['gs'],
+                              gf=points['gf'], gp=points['gp'],
+                              hasGraded=True,
+                              time=timezone.now()
+            )
+            item.save()
+            return HttpResponseRedirect(reverse('submitted'))
+
+    # default action
+    return render(request, 'homework3.html',
+                  {'hwForm': Hw3Form()})
+
+
 def hw4(request):
     if request.method == 'POST':
         hw4Form = Hw4Form(request.POST)
