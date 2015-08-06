@@ -12,6 +12,8 @@ modify the web page content and access database.
 # prerequisite 
 In order to deploy `django` in `Apache`, we need to do two things:
 
+1. install python package `django`, `virtualenv`.
+   `pip install django virtualenv`
 1. install `mod-swgi` Apache module. In Ubuntu, `sudo apt-get install libapache2-mod-wsgi`
 
 2. modify the Apache configuration file to indicate the right path to the homework
