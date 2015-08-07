@@ -76,13 +76,18 @@ $
 2. create django project and virtual environment.
 3. install a few packages inside this virtual environment.
    ```
-   pip install django-toolbelt, pillow
+   pip install django-toolbelt, pillow, django-mathjax
    ```
 4. edit `Procfile` and `requirement.txt`
 5. change `setting.py` and `wsgi.py`
 6. commit code and add remote heroku by `heroku create`. Then push code to heroku:
    `push heroku master`. (note must push to master branch)
 7. migrate database. `heroku run python migrate syncdb`.
+
+**Note:**
+
+* mathjax js is not loaded in heroku but well behaved locally. I do not know why. Fortunately,
+  `django-mathjax` works.
 
 ## how to change the email style ?
 
