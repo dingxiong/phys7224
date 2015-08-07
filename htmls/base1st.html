@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load mathjax %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,12 +23,14 @@ Homework
 <link href="{% static 'styles/sidebar.css' %}" rel="stylesheet" type="text/css">
 
 <!-- import mathjax.js -->
+<!-- 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
 </script>
 <script type="text/javascript"
-	src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&delayStartupUntil=onload">
-</script>
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&delayStartupUntil=onload">
+</script> -->
+{% mathjax_scripts %}
 
 <script type="text/javascript" src="js/jquery.min.js"></script> 
 <script type="text/javascript" src="js/jquery.xdomainajax.js"></script> 

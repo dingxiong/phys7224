@@ -1,93 +1,239 @@
+{% extends "base1st.html" %}
 {% load staticfiles %}
-{% load mathjax %}
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=IE7">
-<meta name="fragment" content="!">
-<meta name="robots" content="NOODP">
-<meta charset="utf-8">
-<meta property="og:title" content="Nonlinear Dynamics 1: Geometry of Chaos">
-<meta property="og:type" content="website">
-<meta property="og:image" content="figs/SOOClogo.jpg">
-<meta property="og:site_name" content="Nonlinear Dynamics 1: Geometry of Chaos">
-<meta property="og:locale" content="en_US">
-<meta property="og:description" content="Nonlinear Dynamics 1: Geometry of Chaos is a free online class taught by Predrag Cvitanović of Georgia Institute of Technology">
-<meta name="description" content="Nonlinear Dynamics 1: Geometry of Chaos is a free online class taught by Predrag Cvitanović of Georgia Institute of Technology">
-<meta name="image" content="figs/SOOClogo.jpg">
-			<title>
-Homework
-			</title>
-<link rel="shortcut icon" href="figs/DasBuch.ico" type="image/x-icon" />
-<link href="{% static 'styles/sidebar.css' %}" rel="stylesheet" type="text/css">
 
-{% mathjax_scripts %}
+{% block homework %}
 
-</head>
+<h2 class="course-page-header">
+  Homework 1  
+</h2>
 
-<body>
-<!--<title>Welcome</title>
-	$Author: predrag $
-	$Date: 2014-04-23 21:43:07 -0400 (Mon, 23 Apr 2014)
-<h3>welcome! </h3>
--->
+<!-- -------------------------------------------------- -->
+<!-- the content of homework -->
+<div class="course-quiz-preamble">
+  In the following exercises, we are going to get familiar with the 
+  Roessler system, which is a simple ODE system that exhibits chaos. 
+  You can download the python script templates for Questions 3-5 from 
+  <a href="scripts/Rossler.zip">here</a> (right click, "save as").     
+  If you prefer to use some other programming language for these
+  problems, please download and read the code as the comments 
+  are intended to guide you through the algorithm.
+</div>
 
-<div class="course-topbanner-wrapper">
-  <div class="course-topbanner">
-    <div class="course-topbanner-university-logo"><a href="http://www.gatech.edu" target="_blank" data-if-linkable="add-referrer" title="http://www.gatech.edu" class="university-color"><img src="{% static "figs/Georgia-Institute-of-Technology.png" %}" alt="gatech"></a> </div>
-    <h1 class="course-topbanner-header"><a href="index.html" data-if-linkable="modal-lock" class="course-topbanner-name university-color"
->Nonlinear Dynamics 1: Geometry of Chaos</a><br>
-      <span class="course-topbanner-instructor"
->by Predrag Cvitanović</span></h1>
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+
+  <!---------------- q1 ---------------- -->
+  <div style="padding:10px 5px 15px 20px;">
+    <h4>
+      Q1.1 \(\quad\) Equilibria of the Roessler flow (ChaosBook.org version14.5.7, exercise 2.8 a)
+    </h4>
+    Find all equilibrium points \( (x_q, y_q,z_q) \) of the Roessler system (2.23). How many are there?
+
+    <br><br>
+    {{hwForm.q1}}
   </div>
-</div>
-</div>
 
-<div style="position:relative;" class="container-fluid">
-<div class="row-fluid">
-<div id="course-page-sidebar" role="navigation">
-<div class="curse-sidebar" role="menubar">
-<div id="course-page-sidebar" role="navigation">
-  <div class="course-navbar-container"><a href="about.html"  data-ab-user-convert="navclick_index"> <img src="{% static "figs/SOOClogo.jpg" %}" style="width: 205px;height: 116px; box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05);" alt="Course Home Page"></a>
-    <ul class="course-navbar-list">
-      <li class="course-navbar-item"><a href="index.html" data-if-linkable="modal-lock,gray,lock-icon"  data-ab-user-convert="navclick_Announcements" class="university-color">Announcements </a></li>
-      <li class="course-navbar-item">
-        <h3>Course</h3>
-      </li>
-      <li class="course-navbar-item"><a href="Syllabus.html" data-if-linkable="modal-lock,gray,lock-icon"  data-ab-user-convert="navclick_Syllabus_&amp;_Schedule" class="university-color">Syllabus &amp; Schedule </a></li>
-<!--      <li class="course-navbar-item"><a href="https://www.youtube.com/playlist?list=PLVcaOb64gCp8CAL-6KMjTAUfOkr624kLT" data-if-linkable="modal-lock,gray,lock-icon"  data-ab-user-convert="navclick_Video_Lectures" class="university-color">Video Lectures </a></li>
-      <li class="course-navbar-item"><a href="Homeworks.html" data-if-linkable="modal-lock,gray,lock-icon"  data-ab-user-convert="navclick_Homework_assignments" class="university-color">Homework assignments </a></li>
- -->      <li class="course-navbar-item"><a href="Course1w1.html" data-if-linkable="modal-lock,gray,lock-icon"  data-ab-user-convert="navclick_Week_2_" class="university-color">Week 1 </a></li>
-      <li class="course-navbar-item"><a href="Course1w2.html" data-if-linkable="modal-lock,gray,lock-icon"  data-ab-user-convert="navclick_Week_2_" class="university-color">Week 2 </a></li>
-      <li class="course-navbar-item"><a href="Course1w3.html" data-if-linkable="modal-lock,gray,lock-icon"  data-ab-user-convert="navclick_Week_3" class="university-color">Week 3 </a></li>
-      <li class="course-navbar-item"><a href="Course1w4.html" data-if-linkable="modal-lock,gray,lock-icon"  data-ab-user-convert="navclick_Week_4" class="university-color">Week 4 </a></li>
-      <li class="course-navbar-item"><a href="Course1w5.html" data-if-linkable="modal-lock,gray,lock-icon"  data-ab-user-convert="navclick_Week_5" class="university-color">Week 5 </a></li>
-      <li class="course-navbar-item"><a href="Course1w6.html" data-if-linkable="modal-lock,gray,lock-icon"  data-ab-user-convert="navclick_Week_6" class="university-color">Week 6 </a></li>
-      <li class="course-navbar-item"><a href="Course1w7.html" data-if-linkable="modal-lock,gray,lock-icon"  data-ab-user-convert="navclick_Week_7" class="university-color">Week 7 </a></li>
-      <li class="course-navbar-item"><a href="Course1w8.html" data-if-linkable="modal-lock,gray,lock-icon"  data-ab-user-convert="navclick_Week_8" class="university-color">Week 8 </a></li>
-      <li class="course-navbar-item"><a href="Grading.html" data-if-linkable="modal-lock,gray,lock-icon"  data-ab-user-convert="navclick_Grading_&amp;_Logistics" class="university-color">Grading &amp; Logistics </a></li>
-      <li class="course-navbar-item"><a href="Software.html" data-if-linkable="modal-lock,gray,lock-icon"  data-ab-user-convert="navclick_Software_Requirements" class="university-color"> Software </a></li>
-      <li class="course-navbar-item"><a href="Python.html" data-if-linkable="modal-lock,gray,lock-icon"  data-ab-user-convert="navclick_Python_Resources" class="university-color">Python Resources </a></li>
-      <li class="course-navbar-item">
-        <h3>Community</h3>
-      </li>
-      <li class="course-navbar-item"><a href="http://piazza.com/gatech/spring2015/phys7224" data-if-linkable="modal-lock,gray,lock-icon"  data-ab-user-convert="navclick_Discussion_Forums" class="university-color">Discussion Forums </a> </li>
-        <li class="course-navbar-item"><a href="PHYS-7224.html" data-if-linkable="modal-lock,gray,lock-icon"  data-ab-user-convert="navclick_Discussion_Forums" class="university-color">Gatech Forum</a> </li>
-      </ul>
+
+  <!---------------- q2 ---------------- -->
+  <div style="padding:10px 5px 15px 20px;">
+    <h4>
+      Q1.2 \(\quad\) Equilibria of the Roessler flow (ChaosBook.org version14.5.7, exercise 2.8 b)
+    </h4>
+    Assume that \( b=a \). As we shall see, some surprisingly large, and surprisingly small numbers
+    arise in this system. In order to understand their size, introduce parameters
+    \[
+    \epsilon = a/c \,,\;    
+    D = 1-4\epsilon^2 \,,\;     
+    p^{\pm} = (1\pm \sqrt D )/2
+    \,.
+    \]
+    Express all the equilibria in terms of \( (c,\epsilon,D,p^{\pm}) \), expand to the first order
+    in \( \epsilon \), and evaluate for \( a=b=0.2 \), \(c=5.7\).
+
+    Let tuple \( (x_q, y_q, z_q) \) denote the equilibrium that is close to the origin.
+    Enter \(x_q\) in the following box with 4 decimal digits.
+    In the case studied \( \epsilon\approx 0.03 \), so these estimates are quite accurate. 
+
+    
+    <br><br>
+    {{hwForm.q2}}
   </div>
-</div>
+  
+  <!---------------- q3 ---------------- -->
+  <div style="padding:10px 5px 15px 20px;">
+    <h4>
+      Q1.3 \(\quad\) Runge-Kutta integration
+    </h4>
+    Read <b>RungeKutta.py</b> and edit the lines where you see the comment
+    \[ \mbox{#COMPLETE THIS LINE} \]
+    and change 'None' assignments according to the Runge-Kutta method equations (http://goo.gl/TJG7m2 ).
+    Set  integration time to 10 by changing the value of \(\mbox{tFinal}\),
+    and  set  the number of integration points to 1000 by changing value of   \(\mbox{Nt}\).
+    <br><br>
 
-<div id="course-page-content" role="main">
-    <div style="display: block;" id="spark" class="hide">  
-      \(x = y\)
-    </div>
-</div>
+    Run \(\mbox{RungeKutta.py}\) to test your  integrator,  it should numerically integrate the one
+    dimensional harmonic  oscillator and  plot you the position and velocity as a function of time.
+    
+    Do they look  like those of the harmonic oscillator?
+    If they do, then  look at your display, where the program should have written the numerical value
+    of the  final position. Enter this number to the box below, 
+    Please use 4 decimal digits.
 
-<script>
-alert("good");
-</script>
+    
+    <br><br>
+    {{hwForm.q3}}
+  </div>
 
+  <!---------------- q4 ---------------- -->
+  <div style="padding:10px 5px 15px 20px;">
+    <h4>
+      Q1.4 \(\quad\) Integrating Roessler system
+    </h4>
 
-</body>
-</html>
+    In  \( \mbox{Rossler.py} \), complete the  \( \mbox{Velocity(ssp, t)}\) function using Roessler ODEs:
+    \[
+    \begin{aligned}     \dot{x} &=  -y - z \\     \dot{y} &=  x +ay \\     \dot{z} &=  b +z(x-c)\, .  \end{aligned}
+    \]
+    (Change the lines where you see the  \( \mbox{#COMPLETE THIS LINE} \) comment inside the
+    \( \mbox{ Veloctity(ssp, t) }\).)
+    <br><br>
+    For now, ignore the functions
+    \( \mbox{ Flow(), StabilityMatrix(), JacobianVelocity(), Jacobian() } \)
+    and scroll down to the block which starts with
+    \[ \mbox{  if __name__ == "__main__": } \]
+    For your first simulation, set the initial time (\( \mbox{ tInitial }\)) to \(0\),
+    final time (\( \mbox{ tFinal} \)) to \(100\) and number of data points (\( \mbox{ Nt} \)) to \(10000\).
+
+    Make sure that \( \mbox{ RK4.py} \) from previous exercise is in your working folder,
+    and lines lines where the solution is calculated reads
+    \[
+    \begin{aligned}
+    & \mbox{ sspSolution =  rk.RK4(velRossler, ssp0, tArray)} \\
+    & \mbox{ #sspSolution =  odeint(velRossler, ssp0, tArray) }
+    \end{aligned}
+    \]
+    These lines determines which integrator to use in this exercise.
+    We are first going to use our own \( \mbox{ RK4} \) integration from the previous example.
+    Run \( \mbox{ Rossler.py} \) to test your program. Do you see the Roessler attractor (http://goo.gl/GE2Lhx )?
+
+    <br><br>
+
+    Now go back replace your RK4 implementation by \( \mbox{ odeint} \) from \( \mbox{ scipy.integrate} \)
+    by commenting out the line which uses \( \mbox{ rk.RK4()} \) and removing \( \mbox{ #} \)
+    from the beginning of the next line. Re-run the program,
+    make sure that \( \mbox{ odeint} \) yields a similar picture.
+    After making sure that you can produce the Roessler attractor,
+    now set the initial condition for integration to
+    \[
+    (x_0, y_0, z_0) = (9.269083709793489945, 0.0, 2.581592405683282632)
+    \]
+    by setting \( \mbox{ ssp0} \) and integration time to
+    \[ t_f = 5.881088455554846384 \]
+    by setting \( \mbox{ tFinal} \) and re-run the program. Does the orbit close onto itself?
+
+    It should. Because the initial condition we have given is on the shortest periodic orbit of
+    the Roessler system.   After confirming that you can integrate the periodic orbit correctly,
+    now change the integration time to \[ t_f = 2.0 \] and re-run <b>Rossler.py</b>.
+    The program will print the final position of the flow, enter the first number, namely, the
+    \(x\) coordinate with at least 4 decimal digits
+    to the box below
+    and submit as your answer to this problem.
+    
+    <br><br>
+    {{hwForm.q4}}
+  </div>
+
+  <!---------------- q5 ---------------- -->
+  <div style="padding:10px 5px 15px 20px;">
+    <h4>
+      Q1.5 \(\quad\) Poincaré sections and return maps of the Rössler system
+    </h4>
+
+    This exercise uses the Rossler.py module from the previous exercise,
+    so  attempt this question after completing question 4.
+
+    <br><br>
+
+    In this exercise, we are going to look at the Poincaré sections and  radial  return maps
+    on the Rössler attractor. Poincaré sections we are  going to use are planes which
+    include \( z \)-axis and are oriented at  different angles in the  \(x-y \) plane
+    (just as in Figure 3.2 in  ChaosBook.org version14.5.7).
+
+    <br><br>
+
+    Open  \( \mbox{Poincare.py} \) and complete the definition of the rotation
+    matrix  (\( \mbox{zRotation(theta)} \)) according to:
+    \[
+    R_z (\theta) =
+    \left( \begin{array}{ccc}
+    \cos \theta & - \sin \theta & 0 \\
+    \sin \theta & \cos \theta & 0 \\
+    0 & 0 & 1
+    \end{array}\right)
+    \]
+
+    Next, complete the definition of
+    \[  \mbox{UPoincare(ssp, sspTemplate=sspTemplate, nTemplate=nTemplate)}  \]  which returns \( 0 \)
+    if the state space vector \( \mbox{ssp} \) is on  the Poincaré section hyperplane defined by
+    \( \mbox{sspTemplate} \)  and \( \mbox{nTemplate} \).
+    <br><br>
+
+    A side note on the  appearance of arguments of function UPoincare:
+    On the second and third  arguments of this function, we assign a 'default value' to the
+    arguments \( \mbox{sspTemplate} \) and \( \mbox{nTemplate} \) which we  define right before
+    defining \( \mbox{UPoincare} \). This is a handy  structure in python gives us the option of
+    calling  \( \mbox{UPoincare} \) with 1, 2, or 3 arguments. If we call it using  only one
+    argument \( \mbox{UPoincare(ssp)} \) the function is  evaluated using default values for
+    \( \mbox{sspTemplate} \) and  \( \mbox{nTemplate} \), if we specify their values in the function
+    call, the default values will be ignored.  
+    <br><br>
+    
+    Continue  reading the code
+    and complete the if statement below which you see the  comment.
+    \[ \mbox{#COMPLETE THE LINE ABOVE, HINT: } \]
+    Read the rest of the code and run it! It should produce three figures
+    like the ones at the bottom of this page.
+    <br><br>
+    
+    The third figure is the radial return map of points on  the Poincaré section.
+    On this figure, read the value where the return  map intersects with the \( r_n = r_{n+1} \) line.
+    This is going to be  your initial guess for the Newton solver which will find the fixed  point of
+    this map. Now go back to the code and uncomment and complete  the lines below the comment
+    \[
+    \begin{aligned}
+    & \mbox{#UNCOMMENT FOLLOWING TWO LINES AFTER READING INITIAL GUESS FOR THE SOLVER} \\
+    & \mbox{#FROM THE RETURN MAP }
+    \end{aligned}
+    \]
+
+    Rerun the program, which now should print the value of the fixed  point of
+    the return map on the output.
+    Copy this number to the box  below as your answer to this problem.
+  
+
+    <br><br>
+    {{hwForm.q5}} 
+  </div>
+
+  <!---------------- email ---------------- -->
+  <div style="padding:10px 5px 15px 20px;">
+    <h4>Your e-mail</h4>
+    Please enter your e-mail (the same you are registered under in Piazza) to receive your grades:
+    <br><br>
+    
+    {{hwForm.email}}
+  </div>
+
+  <!---------------- submit ---------------- -->
+  <br><br><br>
+  <p style="text-align:center;">
+    <input  type="submit" value="Submit">
+  </p>
+  
+</form>
+
+<img src="{% static "figs/RosslerPoincare1.png" %}" width=200>
+<img src="{% static "figs/RosslerPoincare2.png" %}" width=200>
+<img src="{% static "figs/RosslerPoincare3.png" %}" width=200>
+
+{% endblock %}
