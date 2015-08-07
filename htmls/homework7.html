@@ -10,13 +10,10 @@
 <!-- -------------------------------------------------- -->
 <!-- the content of homework -->
 <div class="course-quiz-preamble">
-  In the following exercises, we are going to get familiar with the 
-  Roessler system, which is a simple ODE system that exhibits chaos. 
-  You can download the python script templates for Questions 3-5 from 
-  <a href="{% static "scripts/Rossler.zip" %}">here</a> (right click, "save as").     
-  If you prefer to use some other programming language for these
-  problems, please download and read the code as the comments 
-  are intended to guide you through the algorithm.
+  For this homework, you can submit up to 3 times. <br>
+  We provide one python script for you to start 
+  with. Download it form 
+  <a href="{% static  "scripts/HenonMap.py" %}">here</a> (right click, "save as"). 
 </div>
 
 <form method="post" enctype="multipart/form-data">
@@ -174,8 +171,11 @@
   
 </form>
 
-<img src="{% static "figs/RosslerPoincare1.png" %}" width=200>
-<img src="{% static "figs/RosslerPoincare2.png" %}" width=200>
-<img src="{% static "figs/RosslerPoincare3.png" %}" width=200>
+
+<img src="{% static "figs/Henon.png" %}" alt="henon map" height="300" width="300" />
+<img src="{% static "figs/henonUSmanifold.png" %}" alt="stable unstable manifold" height="300" width="300" /> <br>
+<img src="{% static "figs/henonOneIter.png"  %}" alt="henon" height="300" width="300" />
+<img src="{% static "figs/henonOneIter2.png"  %}" alt="henon" height="300" width="300" /> <br>
+<img src="{% static "figs/henon2Iter.png"  %}" alt="henon" height="300" width="300" />
 
 {% endblock %}
