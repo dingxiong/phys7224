@@ -67,6 +67,7 @@ $
   sudo chown www-data db.sqlite3
   sudo chmod 664 db.sqlite3
   ```
+
 ## steps to deploy it on Heroku
 [Tutorial](https://devcenter.heroku.com/articles/getting-started-with-django)
 
