@@ -82,6 +82,7 @@ $
 5. change `setting.py` and `wsgi.py`
 6. commit code and add remote heroku by `heroku create`. Then push code to heroku:
    `push heroku master`. (note must push to master branch)
+7. migrate database. `heroku run python migrate syncdb`.
 
 ## how to change the email style ?
 
