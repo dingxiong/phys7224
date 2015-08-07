@@ -28,11 +28,11 @@ weekLinks = {
 }
 
 homeworkLinks = {
-    1: "http://www.chaosbook.org/course1/homework1.html",
-    2: "http://www.chaosbook.org/course1/homework2.html",
-    3: "http://www.chaosbook.org/course1/homework3.html",
-    4: "http://www.chaosbook.org/course1/homework4.html",
-    5: "http://www.chaosbook.org/course1/homework5.html",
+    1: "https://phys7224.herokuapp.com/grader/homework1",
+    2: "https://phys7224.herokuapp.com/grader/homework2",
+    3: "https://phys7224.herokuapp.com/grader/homework3",
+    4: "https://phys7224.herokuapp.com/grader/homework4",
+    5: "https://phys7224.herokuapp.com/grader/homework5",
     6: "http://www.chaosbook.org/course1/homework6.html",
     7: "http://www.chaosbook.org/course1/homework7.html",
     8: "http://www.chaosbook.org/course1/homework8.html",
