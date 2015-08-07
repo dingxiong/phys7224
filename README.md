@@ -81,7 +81,7 @@ $
 4. edit `Procfile` and `requirement.txt`
 5. change `setting.py` and `wsgi.py`
 6. commit code and add remote heroku by `heroku create`. Then push code to heroku:
-   `push heroku master`. (not must push to master branch)
+   `push heroku master`. (note must push to master branch)
 
 ## how to change the email style ?
 
