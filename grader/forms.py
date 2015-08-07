@@ -149,3 +149,76 @@ class Hw5Form(forms.ModelForm):
         fields = ['q1', 'q2', 'q3', 'q4', 'q5', 'email']
 
 
+class Hw6Form(forms.ModelForm):
+
+    q1 = forms.ChoiceField(required=False,
+                           widget=forms.RadioSelect,
+                           choices=(
+                               ('1st',
+                                r"\( h(\hat{x}) \) is not symmetric in general"),
+                               ('2nd',
+                                r"\( h(\hat{x})  t(\hat{x}) = 0 \)"),
+                               ('3rd',
+                                r"\( t'^\top  h(\hat{x})  = 0 \)"),
+                               ('4th',
+                                r"\( h(\hat{x}) \) is not well defined at slice boarder"),
+                               ('5th',
+                                r"The inverse of \( h(\hat{x}) \) transforms \(\hat{v}(\hat{x}) \) to \( v(\hat{x})\)"),
+                           ))
+    
+    q2 = forms.ChoiceField(required=False,
+                           widget=forms.RadioSelect,
+                           choices=(
+                               ('1st',
+                                r'\( \hat{J}(\hat{x}_2, \hat{x}_1) h(\hat{x}_1)g(-\phi_1) = h(\hat{x}_2) g(-\phi_2) J(x_2, x_1) \)'),
+                               ('2nd',
+                                r'\( h(\hat{x}_1)g(-\phi_1) \hat{J}(\hat{x}_2, \hat{x}_1) = J(x_2, x_1) h(\hat{x}_2) g(-\phi_2) \)'),
+                               ('3rd',
+                                r'\( \hat{J}(\hat{x}_2, \hat{x}_1) h(\hat{x}_1) = h(\hat{x}_2)  J(x_2, x_1) \)'),
+                               ('4th',
+                                r'\( \hat{J}(\hat{x}_2, \hat{x}_1) g(-\phi_1) = g(-\phi_2) J(x_2, x_1) \)'),
+                               ('5th',
+                                r'\( \hat{J}(\hat{x}_2, \hat{x}_1) h(\hat{x}_1)g(\phi_1) = h(\hat{x}_2) g(\phi_2) J(x_2, x_1) \)'),
+                               ('6th',
+                                r'\( h(\hat{x}_1)g(\phi_1) \hat{J}(\hat{x}_2, \hat{x}_1) = J(x_2, x_1) h(\hat{x}_2) g(\phi_2) \)'),
+                               ('7th',
+                                r'none of above'),
+                           ))
+
+    q5 = forms.ChoiceField(required=False,
+                           widget=forms.RadioSelect,
+                           choices=(
+                               ('1st',
+                                r'\( \overline{1}  \)'),
+                               ('2nd',
+                                r'\( \overline{01}\)'),
+                               ('3rd',
+                                r'\( \overline{001}\)'),
+                               ('4th',
+                                r'\( \overline{01011}\)'),
+                               ('5th',
+                                r'\( \overline{101110} \)'),
+                           ))
+
+    class Meta:
+        model = Hw6_submit
+        fields = ['q1', 'q2', 'q3', 'q4', 'q5', 'email']
+
+
+class Hw7Form(forms.ModelForm):
+    
+    q2 = forms.ChoiceField(required=False,
+                           widget=forms.RadioSelect,
+                           choices=(
+                               ('1st', "0B"),
+                               ('2nd', "0D"),
+                               ('3rd', "BC"),
+                               ('4th', "CD"),
+                               ('5th', "none of above"),
+                           ))
+
+    class Meta:
+        model = Hw7_submit
+        fields = ['q1', 'q2', 'q3', 'q4', 'email']
+
+

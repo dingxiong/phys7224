@@ -1,0 +1,191 @@
+{% extends "base1st.html" %}
+{% load staticfiles %}
+
+{% block homework %}
+
+<h2 class="course-page-header">
+  Homework 6  
+</h2>
+
+<!-- -------------------------------------------------- -->
+<!-- the content of homework -->
+<div class="course-quiz-preamble">
+  For this homework, you can submit up to 3 times. <br>
+  There is no numerical questions in this homework, but
+  we provide one simple python script for Q6.3 for you to play 
+  with. Download it form 
+  <a href="{% static "scripts/tentMap.py" %}">here</a> (right click, "save as"). 
+</div>
+
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+
+  <!---------------- q1 ---------------- -->
+  <div style="padding:10px 5px 15px 20px;">
+    <h4>
+      Q6.1 \(\quad\) Projection into slice
+    </h4>
+    In the text book ( chpater 13, Equation (13.6) ),
+    you have seen that the dynamcis 
+    in the slice is related to dynamics in the full state 
+    space by
+    \[
+    \hat{v}(\hat{x}) = v(\hat{x}) - 
+    \frac{v(\hat{x})^\top \cdot t'}{t(\hat{x})^\top \cdot t'}
+    t(\hat{x})
+    \]
+    We can treat the above formula as a projection process:
+    projection from full state space to slice by matrix 
+    \[
+    h(\hat{x}) = I -
+    \frac{t(\hat{x}) t'^\top}{t(\hat{x})^\top \cdot t'} 
+    \]
+    Then the relation is just
+    \(\hat{v}(\hat{x}) = h(\hat{x}) v(\hat{x})\). Here, all vectors
+    are column vectors, and \(\top\) denotes the transpose of a column
+    vector giving you a row vector. Putting two matrices/vectors 
+    together means the usual matrix product; for instance,
+    \(t(\hat{x}) t'^\top\) is the matrix product of a n-dimensional 
+    column vector and a n-dimensional row vector giving you a [n x n] 
+    matrix. The dot product above is used just to emphasize that 
+    the outcome is a number.
+    Actually,
+    Which of the following is not correct about
+    projection \(h(\hat{x})\) ? Please think about 
+    the physical meaning. 
+
+    <br><br>
+    {{hwForm.q1}}
+  </div>
+
+
+  <!---------------- q2 ---------------- -->
+  <div style="padding:10px 5px 15px 20px;">
+    <h4>
+      Q6.2 \(\quad\)  Projection of Jacobian
+    </h4>
+    At week 2, we learn the relation between Jacobian in the 
+    full state space and that on the Poincare section 
+    ( chapter 4, equation (4.25) ): 
+    \[
+    \hat{J}_{ij} = \left( 
+    \delta_{ik} - \frac{v'_i \partial_k U'}{v'\cdot \partial U'} 
+    \right) J_{kj} 
+    \]
+    This transformation looks similar to \(h(\hat{x})\) in Q6.1, 
+    right? This motivates us to think about the relation between Jacobian 
+    in the full state space and that in the slice. Suppose flow 
+    \(f(x, t)\) has continous symmetry \(g(\phi)\). After choosing a proper
+    slice, we reduce the dynamics into the slice. Choose one point in the
+    full state space \(x_1 = x(0)\), and evolve it for a period \(t\), we get
+    \(x_2 = f(x(0), t)\), denote the Jacobian associated with this period
+    as \(J(x_2, x_1)\). At the same time,
+    the dynamics in the slice also traces out a 
+    corresponding trajectory from \(\hat{x}_1\) to \(\hat{x}_2\), with 
+    \(x_1 = g(\phi_1)\hat{x}_1\) and \(x_2 = g(\phi_2) \hat{x}_2 \). Denote
+    the Jacobian in the slice assoiated with the same period as 
+    \(\hat{J}(\hat{x}_2, \hat{x}_1)\). What is the correct relation between 
+    \(J(x_2, x_1)\) and \(\hat{J}(\hat{x}_2, \hat{x}_1)\) ? 
+    <br><br>
+    Hint: try to think
+    about the physical meaning of the following expressions. Also you can 
+    write a simple code using two modes system to verify your statement.
+
+    
+    <br><br>
+    {{hwForm.q2}}
+  </div>
+  
+  <!---------------- q3 ---------------- -->
+  <div style="padding:10px 5px 15px 20px;">
+    <h4>
+      Q6.3 \(\quad\) Full tent map (Chapter 14 Example 14.8, 14.10) 
+    </h4>
+    Full tent map 
+    \[
+    f(\gamma) = 1 - 2|\gamma - 1/2|, \quad \gamma \in [0, 1]
+    \]
+    has a simple algorithm to find the initial condition corresponding
+    to a specific itinerary \(S^+\):
+    \[
+    w_{n+1} = \left\{
+    \begin{array}{l l}
+    w_n & \quad \text{if} \quad s_{n+1} = 0 \\
+    1-w_n & \quad \text{if} \quad s_{n+1} =1
+    \end{array}
+    \right.
+    \]
+    with \(w_1 = s_1\). Then the map point is 
+    \( \gamma(S^+) = 0.w_1 w_2 w_3 \cdots = \Sigma_{n=1}^{\infty} w_n/2^n\).
+    For example, we start from point 0.8 and get a perodic orbit: 0.8, 0.4, 0.8
+    ..., the corresponding itinerary \(S^+ = 101010\cdots\). Then by this 
+    algorithm, \(w_1 = s_1 = 1\), \(w_2 = w_1 = 1\), \(w_3 = 1-w_2 = 0\) and so 
+    on, we get \(\gamma(S^+)= 0.11001100\cdots = 0.8\). Bingo ! we recover 
+    the initial condition successfully.
+    <br><br>
+    So along as you know the itinerary sequence (symbolic
+    dynamics), you can calculate the initial condition.
+    Now, itinerary \(\overline{000001}\) denotes the symbolic dynamics 
+    of a periodic orbit with length 6. Here, overline means repeating.
+    What is the corresponding initial condition of this orbit ?
+    (choose the smallest one in the periodic orbit)
+
+    
+    <br><br>
+    {{hwForm.q3}}
+  </div>
+
+  <!---------------- q4 ---------------- -->
+  <div style="padding:10px 5px 15px 20px;">
+    <h4>
+      Q6.4 \(\quad\) "Golden mean" pruned map (Chapter 14 Exercise 14.6)
+    </h4>
+
+    The first figure at the bottom of this page shows a symmetric tent map
+    on the unit interval such that its highest point belongs to a 3-cycle.
+    The slopes of the two branches have the same magnitude. Please try to 
+    find the slope. What is the critical value of this map, namely, the 
+    image of the
+    critical point of this map ?
+
+    
+    <br><br>
+    {{hwForm.q4}}
+  </div>
+
+  <!---------------- q5 ---------------- -->
+  <div style="padding:10px 5px 15px 20px;">
+    <h4>
+      Q6.5 \(\quad\) "Golden mean" map -- continued
+    </h4>
+
+    If the symbolic dynamics is such that for \(x < 1/2\) we use
+    symbol 0 and for \( x > 1/2 \) we use symbol 1, which one of
+    the following is not an admissible itinerary of a periodic orbit
+    in this map ? 
+
+    
+    <br><br>
+    {{hwForm.q5}} 
+  </div>
+
+  <!---------------- email ---------------- -->
+  <div style="padding:10px 5px 15px 20px;">
+    <h4>Your e-mail</h4>
+    Please enter your e-mail (the same you are registered under in Piazza) to receive your grades:
+    <br><br>
+    
+    {{hwForm.email}}
+  </div>
+
+  <!---------------- submit ---------------- -->
+  <br><br><br>
+  <p style="text-align:center;">
+    <input  type="submit" value="Submit">
+  </p>
+  
+</form>
+
+<img src="{% static "figs/goldenMap.png" %}" alt="golden map" height="300" width="300" />
+
+{% endblock %}

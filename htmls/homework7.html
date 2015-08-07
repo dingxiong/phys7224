@@ -1,0 +1,181 @@
+{% extends "base1st.html" %}
+{% load staticfiles %}
+
+{% block homework %}
+
+<h2 class="course-page-header">
+  Homework 1  
+</h2>
+
+<!-- -------------------------------------------------- -->
+<!-- the content of homework -->
+<div class="course-quiz-preamble">
+  In the following exercises, we are going to get familiar with the 
+  Roessler system, which is a simple ODE system that exhibits chaos. 
+  You can download the python script templates for Questions 3-5 from 
+  <a href="{% static "scripts/Rossler.zip" %}">here</a> (right click, "save as").     
+  If you prefer to use some other programming language for these
+  problems, please download and read the code as the comments 
+  are intended to guide you through the algorithm.
+</div>
+
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+
+  <!---------------- q1 ---------------- -->
+  <div style="padding:10px 5px 15px 20px;">
+    <h4>
+      Q7.1 \(\quad\) Stable and unstable manifold of Henon map (Example 15.5)
+    </h4>
+    In previous homework, we have studied how Poincare section points
+    stretch and fold along an almost 1-dimensional curve, and how the
+    return map captures the essential dynamics of the system. Now we
+    turn to the 2-dimensional Henon map
+    \[
+    (x_{n+1},y_{n+1}) = (1-ax^2_n+b y_n,x_n)
+    \]
+    to study the stretch and fold mechanism, which occurs in any
+    bounded chaotic system. Stable and unstable manifolds of an
+    equilibrium are topologically invariant objects that help us
+    visualize how the flow is structured close to this equilibrium. If
+    you start with a small ball of initial points centered around the
+    fixed point \(x_0\), and iterate the map, the ball will be
+    stretched along the unstable manifold \(W^u\) and squashed along
+    the stable manifold \(W^s\). But it cannot be stretched to infinity
+    if the system is bounded; thus at some point, it will fold back.
+    The stable manifold is harder to plot than the unstable manifold,
+    but if we reverse the dynamics, the stable manifold becomes
+    unstable manifold, so for a low-dimensional map the same technique
+    can be used to obtain stable manifold. Please confirm that the
+    backward Henon map is
+    \[
+    (x_{n-1},y_{n-1}) = (y_n, - b^{-1}(1-ay^2_n - x_n))
+    \,.
+    \]
+    In this homework, we fix the map parameters to \(a=6\), \(b=-1\).
+    You may have noticed that for \(b=-1\), the backward map
+    is the same as the forward map with exchange of coordinates
+    \( x \) and \(y\).
+    Understanding this observation will help you understand your
+    result.
+    <br><br>
+    
+    Now let's turn to the code. Please set 'case = 1' to validate your
+    implementation of Henon map. Note in case1 we use a different set
+    of parameters. Do not be confused. This set of parameters is only
+    used for validation purpose. For other cases that follow, \(a=6\),
+    \(b=-1\) are used. You are supposed to get a figure similar to
+    fig(a) at the bottom of this page. Also make sure your
+    implementation for backward iteration and the stability matrix is
+    correct.
+    <br><br>
+    
+    Set 'case = 2', and read the instructions in the code comments to
+    understand the stable/unstable manifold algorithm. You should get
+    the stable and unstable manifolds as shown in fig(b). Point 'C' is
+    on the diagonal line \(y = x\). What is the x-coordinate of 'C' ? (
+    at least 2 significant digits should be accurate)
+
+
+    <br><br>
+    {{hwForm.q1}}
+  </div>
+
+
+  <!---------------- q2 ---------------- -->
+  <div style="padding:10px 5px 15px 20px;">
+    <h4>
+      Q7.2 \(\quad\) Henon map continued -- iteration of region 0BCD
+    </h4>
+    In case2, the stable and unstable manifolds enclose a non-wandering
+    region 0BCD. Along curve 0B, state points are stretching, while
+    along curve 0D, state points are contracting. Denote this region as
+    \(M.\).
+    Now perform one forward iteration of \(M.\), namely \(f(M.)\), we
+    get two future strips \(M_{.0}\) and \(M_{.1}\), which are the two
+    magenta parts intersected in the OBCD region in fig(c). The lower
+    strip is \(M_{.0}\) while the upper strip is \(M_{.1}\). Similarly,
+    performing backward iteration of \(M.\) : \(f^{-1}(M.)\) gives us
+    two green strips in region OBCD in fig(c). The left strip is
+    \(M_{0.}\) while the right strip is \(M_{1.}\). Overlapping of
+    these 4 strips produces 4 different small regions \(M_{0.0}\),
+    \(M_{1.0}\), \(M_{1.1}\), \(M_{0.1}\) from 0 to B to C to D. You
+    have a clear view of these four regions in fig(d).
+    <br><br>
+    
+    Now set 'case = 3', try to reproduce fig (c). As you can see in fig
+    (c), the border of magenta region consists of 4 parts: 2
+    arc-curves and 2 short and almost straight lines. However, we are more
+    interested in the inner arc-curve since it helps us partition the
+    state space, as you can see from fig (d). Which side is the
+    pre-image of this inner arc-curve, namely, the pre-image of the
+    magenta curve in fig (d)?
+
+    
+    <br><br>
+    {{hwForm.q2}}
+  </div>
+  
+  <!---------------- q3 ---------------- -->
+  <div style="padding:10px 5px 15px 20px;">
+    <h4>
+      Q7.3 \(\quad\) Henon map continued -- periodic orbits
+    </h4>
+    In case 3, you worked with region 0BCD, and figured out which sides
+    are the pre-images of the inner arc-curves in fig (d). Denote
+    the pre-images for magenta and blue inner arc-curves in fig (d) as
+    \(S_1\) and \(S_2\) respectively. Iterating \(S_1\) and \(S_2\)
+    forward and backward for one step, we obtain intersection regions  \(M_{0.0}\),
+    \(M_{1.0}\), \(M_{1.1}\), \(M_{0.1}\) as shown in fig (d). If we iterate
+    \(S_1\) forward and \(S_2\) backward for two steps, we can get
+    16 small intersection regions as shown in fig (e), which consists
+    of 4 groups and each group is close to one vertex of region 0BCD.
+    \[ \]
+    Please set 'case = 4' to reproduce fig (e). Choose a point in the
+    top left region, the one that is the closest to point D. Use
+    it as an initial guess to find a periodic orbit with period 4.
+    What is the x-coordinate of this periodic point ?
+
+    
+    <br><br>
+    {{hwForm.q3}}
+  </div>
+
+  <!---------------- q4 ---------------- -->
+  <div style="padding:10px 5px 15px 20px;">
+    <h4>
+      Q7.4 \(\quad\) Henon map continued -- the number of intersection regions
+    </h4>
+
+    If we iterate region 0BCD forward 4 times, and iterate 0BCD
+    backward 3 times, how many intersection regions will we get ?
+    Needless to say, the answer better be a positive integer.
+    
+
+    <br><br>
+    {{hwForm.q4}}
+  </div>
+
+
+  <!---------------- email ---------------- -->
+  <div style="padding:10px 5px 15px 20px;">
+    <h4>Your e-mail</h4>
+    Please enter your e-mail (the same you are registered under in Piazza) to receive your grades:
+    <br><br>
+    
+    {{hwForm.email}}
+  </div>
+
+  <!---------------- submit ---------------- -->
+  <br><br><br>
+  <p style="text-align:center;">
+    <input  type="submit" value="Submit">
+  </p>
+  
+</form>
+
+<img src="{% static "figs/RosslerPoincare1.png" %}" width=200>
+<img src="{% static "figs/RosslerPoincare2.png" %}" width=200>
+<img src="{% static "figs/RosslerPoincare3.png" %}" width=200>
+
+{% endblock %}
