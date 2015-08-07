@@ -12,3 +12,6 @@ admin.site.register(Hw3_key)
 
 admin.site.register(Hw4_submit)
 admin.site.register(Hw4_key)
+
+admin.site.register(Hw5_submit)
+admin.site.register(Hw5_key)
