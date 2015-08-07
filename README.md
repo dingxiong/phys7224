@@ -50,6 +50,7 @@ $
 * create a folder htmls under top directory and add its path to TEMPLATES in hws/settings.py.
 * create a folder static under top directory to serve figs and css files. Remember to add the path to STATICFILES_DIRS in hws/settings.py.
 * create models and corresponding forms
+
   **Note:**
   1. specify float field as `null=True` and `blank=True`.
   2. specify char field as `blank=True`.
@@ -66,7 +67,19 @@ $
   sudo chown www-data db.sqlite3
   sudo chmod 664 db.sqlite3
   ```
-  
+## steps to deploy it on Heroku
+[Tutorial](https://devcenter.heroku.com/articles/getting-started-with-django)
+
+### detatiled steps
+1. create a Heroku account,  install Heroku toolbelt, python-virtualenv.
+2. create django project and virtual environment.
+3. install a few packages inside this virtual environment.
+   ```
+   pip install django-toolbelt, pillow
+   ```
+4. edit `Procfile` and `requirement.txt`
+5. change `setting.py` and `wsgi.py`
+
 ## how to change the email style ?
 
 ## remaining problems

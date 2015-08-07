@@ -99,7 +99,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
-# STATIC_ROOT = '/home/xding/00git/phys7224/hws/static_root/'
+STATIC_ROOT = '/home/xding/00git/phys7224/hws/static_root/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
@@ -110,17 +110,3 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'phys7224@gmail.com'
 EMAIL_HOST_PASSWORD = emailPassword
 EMAIL_PORT = 587
-
-############################################################
-# Heroku setup
-
-# Parse database configuration from $DATABASE_URL
-import dj_database_url
-DATABASES['default'] = dj_database_url.config()
-# Honor the 'X-Forwarded-Proto' header for request.is_secure()
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
-
-# Static asset configuration
-STATIC_ROOT = 'staticfiles'
-
