@@ -1,0 +1,119 @@
+{% extends "base1st.html" %}
+{% load staticfiles %}
+
+{% block homework %}
+
+<h2 class="course-page-header">
+  Homework 3
+</h2>
+
+<!-- -------------------------------------------------- -->
+<!-- the content of homework -->
+<div class="course-quiz-preamble">
+  In this homework, you are going to implement the Newton method 
+  to find the shortest periodic orbit of the Rössler system. 
+  This is a rather long exercise, and you may find it helpful to 
+  watch the 
+  <a href="http://www.youtube.com/embed/J5OoLXgiFOE">walkthrough video</a> 
+  before beginning.
+  You can download the template program for homework from 
+  <a href="scripts/Rossler.zip">here</a> (right click, "save as"). 
+</div>
+
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+
+  <!---------------- q1 ---------------- -->
+  <div style="padding:10px 5px 15px 20px;">
+    <h4>
+      Q3.1 \(\quad\) Shortest periodic orbit of the Rössler system
+    </h4>
+    In Homework 2, you computed the Jacobian for a periodic orbit in 
+    order to compute its Floquet multipliers. In this exercise, we 
+    will need to call the Jacobian \(J^t(x)\) for the Newton 
+    method. In \( \mbox{Rossler.py} \) you will find a function 
+    <b>Jacobian(ssp, t)</b> which <b>J = None</b> by default.
+    Construct this function such 
+    that it inputs an initial point \(x\) and time \(t\) and returns 
+    the Jacobian matrix \(J^t(x)\) for a trajectory \(f^t(x)\), you 
+    may copy and paste the appropriate code block from 
+    <b>CycleStability.py</b>. 
+    <br><br>
+
+    Next, open <b>Newton.py</b> and set <b>thetaPoincare</b> to
+
+    \[
+    \theta = 0
+    \]
+
+    to set the angle between your Poincaré section hyperplane and the 
+    x-axis. Read through the code and complete lines where you see the 
+    comment 
+    \( \mbox{#COMPLETE THIS LINE} \), replacing 
+    \( \mbox{None}\) variables. You will see that we have 
+    referred to \( \mbox{Poincare.py} \), \( \mbox{Stability.py} \), and 
+    \( \mbox{CycleStability.py} \) as hints, this is because most of these 
+    completions are repetitions of what you have done in the first two 
+    homework assignments with slight modifications. 
+    <br><br>
+
+    New content of this exercise is the implementation of the Newton 
+    method. This procedure is in the \( \mbox{while} \) loop which reads: 
+
+    \[ \mbox{while np.max(np.abs(error)) > tol:} \]
+
+    In this loop, you will iterate the Newton method until you meet 
+    the numerical tolerance, \( \mbox{tol = 1e-9} \). Key element of this 
+    implementation is the construction of the matrix which we named 
+    \( \mbox{Newton} \). Complete three lines which sets elements of 
+    \( \mbox{Newton} \) according to
+
+    \[
+    N = \left( \begin{array}{c:c}
+    1 - J^t(x) & - v(f^t(x)) \\ \hdashline
+    \hat{n} & 0 
+    \end{array}\right) \, .
+    \]
+
+    This is a \(4 \times 4\) matrix where upper-left block is 
+    \(3 \times 3\), upper right block is \(3 \times 1\), lower left block 
+    is \(1 \times 3\) and lower right is \(1 \times 1\). 
+    <br><br>
+
+    After completing the Newton matrix, run <b>Newton.py</b>. The 
+    script should produce four figures, final one (\( \mbox{Figure 4} \)) 
+    being the shortest periodic orbit that you have just found. Make 
+    sure that the orbit closes onto itself after one period. On the 
+    terminal, the program must print the coordinates of the periodic 
+    orbit where it intersects your Poincaré section:
+
+    \[ \mbox{'Shortest peridoic orbit is at: ',  x, y, z} \]
+
+    Copy these \((x,y,z)\) values into the 3 boxes below.
+    Use at least \(4\) decimal places in your answer.
+    
+    <br><br>
+    x: &nbsp&nbsp {{hwForm.q1}} <br><br>
+    y: &nbsp&nbsp {{hwForm.q2}} <br><br>
+    z: &nbsp&nbsp {{hwForm.q3}} <br><br>
+  </div>
+
+  <!---------------- email ---------------- -->
+  <div style="padding:10px 5px 15px 20px;">
+    <h4>Your e-mail</h4>
+    Please enter your e-mail (the same you are registered under in Piazza) to receive your grades:
+    <br><br>
+    
+    {{hwForm.email}}
+  </div>
+
+  <!---------------- submit ---------------- -->
+  <br><br><br>
+  <p style="text-align:center;">
+    <input  type="submit" value="Submit">
+  </p>
+  
+</form>
+
+
+{% endblock %}
