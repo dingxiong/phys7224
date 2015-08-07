@@ -84,6 +84,8 @@ $
    `push heroku master`. (note must push to master branch)
 7. migrate database. `heroku run python migrate syncdb`.
 
+Last, change the `debug mode` to `False`
+
 **Note:**
 
 * mathjax js is not loaded in heroku but well behaved locally. I do not know why. Fortunately,
