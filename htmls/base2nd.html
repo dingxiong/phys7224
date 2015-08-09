@@ -1,0 +1,100 @@
+{% load staticfiles %}
+{% load mathjax %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=IE7">
+<meta name="fragment" content="!">
+<meta name="robots" content="NOODP">
+<meta charset="utf-8">
+<meta property="og:title" content="Nonlinear dynamics 2: Chaos rules">
+<meta property="og:type" content="website">
+<meta property="og:image" content="figs/SOOClogo.jpg">
+<meta property="og:site_name" content="Nonlinear dynamics 2: Chaos rules">
+<meta property="og:locale" content="en_US">
+<meta property="og:description" content="Nonlinear dynamics 2: Chaos rules is a free online class taught by Predrag Cvitanović of Georgia Institute of Technology">
+<meta name="description" content="Nonlinear dynamics 2: Chaos rules is a free online class taught by Predrag Cvitanović of Georgia Institute of Technology">
+<meta name="image" content="figs/SOOClogo.jpg">
+<title>
+  Homework
+</title>
+<link rel="shortcut icon" href="figs/DasBuch.ico" type="image/x-icon" />
+<link href="{% static 'styles/sidebar.css' %}" rel="stylesheet" type="text/css">
+
+<!-- import mathjax.js -->
+{% mathjax_scripts %}
+
+<script type="text/javascript" src="js/jquery.min.js"></script> 
+<script type="text/javascript" src="js/jquery.xdomainajax.js"></script> 
+
+<link href='https://docs.google.com/static/forms/client/css/3356845543-formview_embedded_st_ltr.css' type='text/css' rel='stylesheet'>
+
+
+</head>
+<body>
+<!--<title>Welcome</title>
+	$Author: predrag $
+	$Date: 2014-04-23 21:43:07 -0400 (Mon, 23 Apr 2014)
+<h3>welcome! </h3>
+-->
+
+<div class="course-topbanner-wrapper">
+  <div class="course-topbanner">
+    <div class="course-topbanner-university-logo"><a href="http://www.gatech.edu" target="_blank" data-if-linkable="add-referrer" title="http://www.gatech.edu" class="university-color"><img src="{% static "figs/Georgia-Institute-of-Technology.png" %}" alt="gatech"></a> </div>
+    <h1 class="course-topbanner-header"><a href="http://www.chaosbook.org/course1/about.html" data-if-linkable="modal-lock" class="course-topbanner-name university-color"
+>Nonlinear dynamics 2: Chaos rules</a><br>
+      <span class="course-topbanner-instructor"
+>by Predrag Cvitanović</span></h1>
+  </div>
+</div>
+</div>
+
+<div style="position:relative;" class="container-fluid">
+<div class="row-fluid">
+<div id="course-page-sidebar" role="navigation">
+<div class="curse-sidebar" role="menubar">
+<div id="course-page-sidebar" role="navigation">
+  <div class="course-navbar-container"><a href="http://www.chaosbook.org/course1/about.html"  data-ab-user-convert="navclick_index"> <img src="{% static "figs/SOOClogo.jpg" %}" style="width: 205px;height: 116px; box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05);" alt="Course Home Page"></a>
+    <ul class="course-navbar-list">
+      <li class="course-navbar-item"><a href="http://www.chaosbook.org/course1/index2.html" data-if-linkable="modal-lock,gray,lock-icon"  data-ab-user-convert="navclick_Announcements" class="university-color">Announcements </a></li>
+      <li class="course-navbar-item">
+        <h3>Course 2</h3>
+      </li>
+      <li class="course-navbar-item"><a href="http://www.chaosbook.org/course1/Syllabus2.html" data-if-linkable="modal-lock,gray,lock-icon"  data-ab-user-convert="navclick_Syllabus_&amp;_Schedule" class="university-color">Syllabus</a></li>
+<!--      <li class="course-navbar-item"><a href="https://www.youtube.com/playlist?list=PLVcaOb64gCp8CAL-6KMjTAUfOkr624kLT" data-if-linkable="modal-lock,gray,lock-icon"  data-ab-user-convert="navclick_Video_Lectures" class="university-color">Video Lectures </a></li>
+      <li class="course-navbar-item"><a href="Homeworks.html" data-if-linkable="modal-lock,gray,lock-icon"  data-ab-user-convert="navclick_Homework_assignments" class="university-color">Homework assignments </a></li>
+ -->      <li class="course-navbar-item"><a href="http://www.chaosbook.org/course1/Course2w9.html" data-if-linkable="modal-lock,gray,lock-icon"  data-ab-user-convert="navclick_Week_9_" class="university-color">Week 9 </a></li>
+      <li class="course-navbar-item"><a href="http://www.chaosbook.org/course1/Course2w10.html" data-if-linkable="modal-lock,gray,lock-icon"  data-ab-user-convert="navclick_Week_10_" class="university-color">Week 10 </a></li>
+      <li class="course-navbar-item"><a href="http://www.chaosbook.org/course1/Course2w11.html" data-if-linkable="modal-lock,gray,lock-icon"  data-ab-user-convert="navclick_Week_11" class="university-color">Week 11</a></li>
+      <li class="course-navbar-item"><a href="http://www.chaosbook.org/course1/Course2w12.html" data-if-linkable="modal-lock,gray,lock-icon"  data-ab-user-convert="navclick_Week_12" class="university-color">Week 12</a></li>
+      <li class="course-navbar-item"><a href="http://www.chaosbook.org/course1/Course2w13.html" data-if-linkable="modal-lock,gray,lock-icon"  data-ab-user-convert="navclick_Week_13" class="university-color">Week 13</a></li>
+      <li class="course-navbar-item"><a href="http://www.chaosbook.org/course1/Course2w14.html" data-if-linkable="modal-lock,gray,lock-icon"  data-ab-user-convert="navclick_Week_14" class="university-color">Week 14</a></li>
+      <li class="course-navbar-item"><a href="http://www.chaosbook.org/course1/Course2w15.html" data-if-linkable="modal-lock,gray,lock-icon"  data-ab-user-convert="navclick_Week_15" class="university-color">Week 15</a></li>
+      <li class="course-navbar-item"><a href="http://www.chaosbook.org/course1/Course2w16.html" data-if-linkable="modal-lock,gray,lock-icon"  data-ab-user-convert="navclick_Week_16" class="university-color">Week 16</a></li>
+
+        <li class="course-navbar-item"><a href="http://www.chaosbook.org/course1/FAQs2.html" data-if-linkable="modal-lock,gray,lock-icon"  data-ab-user-convert="FAQs2" class="university-color">FAQs</a></li>
+        <li class="course-navbar-item"><a href="http://www.chaosbook.org/course1/Software2.html" data-if-linkable="modal-lock,gray,lock-icon"  data-ab-user-convert="navclick_Software2" class="university-color"> Software </a></li>
+        <li class="course-navbar-item"><a href="http://www.chaosbook.org/course1/Python2.html" data-if-linkable="modal-lock,gray,lock-icon"  data-ab-user-convert="navclick_Python2" class="university-color">Python</a></li>
+        <li class="course-navbar-item"><a href="http://www.chaosbook.org/course1/Grading2.html" data-if-linkable="modal-lock,gray,lock-icon"  data-ab-user-convert="navclick_Grading2_&amp;_Logistics" class="university-color">Grading</a></li>
+
+      <li class="course-navbar-item">
+        <h3>Community</h3>
+      </li>
+      <li class="course-navbar-item"><a href="http://piazza.com/gatech/spring2015/phys7224" data-if-linkable="modal-lock,gray,lock-icon"  data-ab-user-convert="navclick_Discussion_Forums" class="university-color">Discussion Forums </a> </li>
+        <li class="course-navbar-item"><a href="PHYS-7224.html" data-if-linkable="modal-lock,gray,lock-icon"  data-ab-user-convert="navclick_Discussion_Forums" class="university-color">Gatech Forum</a> </li>
+      </ul>
+  </div>
+</div>
+<div id="course-page-content" role="main">
+  <div style="display: block;" id="spark" class="hide">
+
+    	{% block homework %}
+	<!-- this block is reverved to howework content -->
+	{% endblock %}
+    
+  </div>
+</div>
+
+</body>
+</HTML>

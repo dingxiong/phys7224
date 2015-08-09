@@ -1,0 +1,200 @@
+{% extends "base2nd.html" %}
+{% load staticfiles %}
+
+{% block homework %}
+
+<h2 class="course-page-header">
+  Homework 10
+</h2>
+
+<div class="course-quiz-preamble">
+  For this homework, you can submit up to 3 times. <br>
+  We provide two python scripts for you to start 
+  with. Download it form 
+  <a href="{% static "scripts/hw10.tar.gz" %}">here</a> (right click, "save as").
+</div>
+
+<!-- -------------------------------------------------- -->
+<!-- the content of homework -->
+<div class="course-quiz-preamble">
+  For this homework, you can submit up to 3 times. <br>
+  We provide two python scripts for you to start 
+  with. Download it form 
+  <a href="{% static "scripts/hw10.tar.gz" %}">here</a> (right click, "save as").
+</div>
+
+
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+
+  <!---------------- q1 ---------------- -->
+  <div style="padding:10px 5px 15px 20px;">
+    <h4>
+      Q10.1 \(\quad\) Natural measure of Henon map
+    </h4>
+
+    Chapter 19 covers basic notations concerning time and space average 
+    of physical observables,  among which, one important concept is 
+    "natural measure" (definition 19.15). Natural measure serves 
+    as integration kernel for computing spatial average of some
+    observables, but, as stated in this chapter,
+    natural measure is by no way a smooth function, which makes it 
+    a hard object in practice. 
+    <br><br>
+    
+    Let's turn to Henon map again 
+    \[
+    (x_{n+1},y_{n+1}) = (1-ax^2_n+b y_n,x_n)
+    \]
+    to numerically investigate its
+    natural measure by formula (19.16). Here, we set parameter
+    \(a = 1.4, b=0.3\). Please read file 'HenonMap.py' carefully and
+    set 'case = 1' to finish approximating natural measure. Note the major
+    part of this file is implemented for you, and you only need to 
+    reproduce figure (c) below.
+    <br><br>
+    
+    Figure (c) shows that the natural measure is singular almost at every 
+    visited point. Therefore, space average through natural measure seems
+    not to be a good approach. In the next few chapters,
+    we will see how cycle expansion can 
+    bypass this problem. The attractor shown in figure (c) is very thin,
+    and I can only distinguish 3 layers. How many layers does your plot 
+    clearly show ?
+
+    
+    <br><br>
+    {{hwForm.q1}}
+  </div>
+
+
+  <!---------------- q2 ---------------- -->
+  <div style="padding:10px 5px 15px 20px;">
+    <h4>
+      Q10.2 \(\quad\) Natural measure of Henon map -- continued
+    </h4>
+    Let's choose a slight different set of parameters for 
+    Henon map as opposed to Q10.1 : \(a=1.39945219, b=0.3 \).
+    Some people may use the same method to calculate
+    natural measure, but actually, there exists a limit cycle 
+    (stable periodic orbit) for this set of parameters. No matter
+    where you start, the trajectory will be trapped to it. So the 
+    natural measure in this case is totally different
+    from that in Q10.1, even though the change of parameters is very small.
+    We conclude that natural measure is not only a singular function,
+    but is also highly sensitive to parameter change.
+    <br><br>
+    
+    set 'case = 2'. First evolve the system for a transient period; then
+    plot the state sequence to see whether it has landed in this limit 
+    cycle. What is the period of this limit cycle ? ( answer should be 
+    a positive integer )
+
+    
+    <br><br>
+    {{hwForm.q2}}
+  </div>
+  
+  <!---------------- q3 ---------------- -->
+  <div style="padding:10px 5px 15px 20px;">
+    <h4>
+      Q10.3 \(\quad\) Piece-wise invariant measure (Exercise 19.5)
+    </h4>
+    The piece-wise map figure (b) below 
+    has maximal value \(1\) at point 
+    \(\alpha = \frac{3-\sqrt{5}}{2}\), and the slopes are
+    \(\pm \Lambda\) with  
+    \(\Lambda = (\sqrt{5}+1)/2 \). We can use the same method in 
+    example 19.1 to get the invariant measure of this map. First,
+    we obtain the Perron-Frobenius matrix, which is [2 x 2] in 
+    this case:
+    \[
+    \mathbf{L} = 
+    \begin{pmatrix}
+    * & 1/\Lambda \\
+    1/\Lambda & * \\
+    \end{pmatrix} 
+    \]
+    You are supposed to figure out the numbers at position (*) above.
+    The invariant measure is the eigenvector corresponding to the leading
+    eigenvalue of \(\mathbf{L}\). 
+    <br><br>
+    
+    What is the invariant measure of the left 
+    branch of this map ? Here we assume measure is normalized as indicated
+    by formula (19.4).  ( Hint: this system is closed, namely, no points 
+    will escape under mapping, so the leading eigenvalue should be 1.)
+
+    
+    <br><br>
+    {{hwForm.q3}}
+  </div>
+
+  <!---------------- q4 ---------------- -->
+  <div style="padding:10px 5px 15px 20px;">
+    <h4>
+      Q10.4 \(\quad\) Escape rate in Logistic map (Exercise 20.2)
+    </h4>
+
+    Chapter 20 almost talks about one thing: the relationship between
+    the expectation value ( asymptotic time and space average ) 
+    and the leading eigenvalue of evolution operator, which is 
+    formula (20.11). Also from example 20.4, you learn that the escape rate
+    in an open system is related to the leading eigenvalue of the 
+    Perron-Frobenius operator by formula (20.35). Although, this relation
+    is revealed in chapter 20, the method of computing leading
+    eigenvalue of evolution operator is postponed to the next few chapters.
+    <br><br>
+    
+    Here we conduct numerical simulation to get the escape rate in the Logistic map:
+    \[
+    f(x) = Ax(1 - x)
+    \]
+    on the unit interval. The trajectory of a point starting
+    in the unit interval either stays in the interval forever
+    or after some iterations leaves the interval and diverges to
+    minus infinity ( for \(A>4\) ). Now let's estimate numerically the escape rate,
+    the rate of exponential decay of the number of points
+    remaining in the unit interval. The result for \(A = 6\) is 
+    shown in fig(a). Y-axis \(\Gamma(N)\) is the ratio of
+    the number of remaining points after iteration \(N\)
+    to the total number of initial points.
+    X-axis is the number of iterations. The slope
+    of this line is about -0.831, so the escape rate is 0.831. 
+    You can try to set \( A = 4.5\) and get an approximate escape rate 0.361.
+    Now set \( A = 5.0\), what is the escape rate ? (at least 2 significant
+    digits should be accurate )
+    <br><br>
+    
+    You may have noticed that a large number of initial points are needed 
+    to obtain a relatively accurate escape rate for this system. That is 
+    why we turn to more elegant method in the next few chapters.
+
+    
+    <br><br>
+    {{hwForm.q4}}
+  </div>
+
+  <!---------------- email ---------------- -->
+  <div style="padding:10px 5px 15px 20px;">
+    <h4>Your e-mail</h4>
+    Please enter your e-mail (the same you are registered under in Piazza) to receive your grades:
+    <br><br>
+    
+    {{hwForm.email}}
+  </div>
+
+  <!---------------- submit ---------------- -->
+  <br><br><br>
+  <p style="text-align:center;">
+    <input  type="submit" value="Submit">
+  </p>
+  
+</form>
+
+<img src="{% static "figs/logisticMap.png" %}" alt="Logistic map" height="300" width="300" />
+<img src="{% static "figs/map_hw10b.svg" %}" alt="map" height="200" width="200" />
+<br>
+<img src="{% static "figs/henonMeasure.png" %}" alt="henon measure" height="300" width="300" />
+
+{% endblock %}

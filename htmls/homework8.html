@@ -1,0 +1,123 @@
+{% extends "base1st.html" %}
+{% load staticfiles %}
+
+{% block homework %}
+
+<h2 class="course-page-header">
+  Homework 8  
+</h2>
+
+<!-- -------------------------------------------------- -->
+<!-- the content of homework -->
+<div class="course-quiz-preamble">
+  For this homework, you can submit up to 3 times. <br>
+  We provide 3 python scripts and needed data for you to start 
+  with. Download it form 
+  <a href="{% static "scripts/hw8.tar.gz" %}">here</a> (right click, "save as"). 
+  This homework is not required. It just provides bonus points which you can use to 
+  improve your total score.
+</div>
+
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+
+  <!---------------- q1 ---------------- -->
+  <div style="padding:10px 5px 15px 20px;">
+    <h4>
+      Q8.1 \(\quad\) two modes system continued -- kneading theory
+    </h4>
+
+    The first part of this course is over. We have focused almost
+    on just one question: how to find periodic orbits in a
+    systematic way? We have
+    seen that the return maps in Rossler flow and two modes flow enable
+    us to establish the symbolic dynamics of these systems, and the 
+    kneading theory
+    gives us strict pruning rules for determination of admissible itineraries.
+    Now, in Chapter 16,
+    multi-shooting method is introduced to accurately determine a periodic orbit
+    of any length.
+    We put these things together in this homework.
+    <br><br>
+
+    If you have not finished HW5, you can still do this homework.
+    The integration routines and the Poincare intersection points
+    in two modes system are provided to you. There are
+    three python files: "unimodal.py", "multishooting.py" and
+    "twomodes_continue.py".
+
+    Please read the comments in "twomodes_continue.py" and set case = 1.
+    You first get the return map from the intersection points and also obtain
+    the critical point \(x_C = 0.9584\).
+    Check that the kneading sequence you get is 1001110111... .
+    According to kneading theory this implies
+    that periodic orbit \(\overline{1000}\) cannot exist for this flow.
+    <br><br>
+    
+    Please try to find periodic orbit \(\overline{1110}\). What is the smallest
+    x-coordinate of this orbit in the return map? In the end, it prints out
+    the error of this guess orbit: 0.000321089. The corresponding orbit is
+    shown in fig(a) below.
+
+    <br><br>
+    {{hwForm.q1}}
+  </div>
+
+
+  <!---------------- q2 ---------------- -->
+  <div style="padding:10px 5px 15px 20px;">
+    <h4>
+      Q8.2 \(\quad\) two modes system continued -- multi-shooting method
+    </h4>
+    
+    Fig(a) is not an exact periodic orbit since the error associated
+    with it is of order 1e-3. We need to implement multi-shooting method
+    to refine the periodic point initial conditions and the period of this orbit to get
+    the true periodic orbit.
+    <br><br>
+    
+    Please set case = 2, and fill out function "shootingMatrix()" in
+    file "multishooting.py". Try to understand how the
+    multi-shooting method works. In this case you will see that the
+    orbit is refined step by step:
+    \[
+    \text{	iteration number i = 0 has error: 0.000321081525164  } \\
+    \text{	iteration number i = 1 has error: 0.000266414948291  } \\
+    \text{	iteration number i = 2 has error: 0.00012592226893   } \\
+    \text{	iteration number i = 3 has error: 2.7067461361e-05   } \\
+    \text{	iteration number i = 4 has error: 1.58482121216e-05  } \\
+    \text{	iteration number i = 5 has error: 2.13125347296e-06  } \\
+    \text{	iteration number i = 6 has error: 3.59414969262e-08  } \\
+    \text{	iteration number i = 7 has error: 6.27359848099e-11  } \\
+    \text{	iteration number i = 8 has error: 3.26960680752e-14  } \\
+    \text{	iteration number i = 9 has error: 7.32747196253e-15  } \\
+    \text{	iteration terminates at error : 7.32747196253e-15    } \\
+    \]
+    What is the period of this orbit ?
+
+    
+    <br><br>
+    {{hwForm.q2}}
+  </div>
+  
+ 
+  <!---------------- email ---------------- -->
+  <div style="padding:10px 5px 15px 20px;">
+    <h4>Your e-mail</h4>
+    Please enter your e-mail (the same you are registered under in Piazza) to receive your grades:
+    <br><br>
+    
+    {{hwForm.email}}
+  </div>
+
+  <!---------------- submit ---------------- -->
+  <br><br><br>
+  <p style="text-align:center;">
+    <input  type="submit" value="Submit">
+  </p>
+  
+</form>
+
+<img src="{% static "figs/twoModesP4.png"  %}" alt="two modes" height="300" width="300" />
+
+{% endblock %}

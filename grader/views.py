@@ -268,6 +268,315 @@ def hw7(request):
                   {'hwForm': Hw7Form()})
 
 
+def hw8(request):
+    if request.method == 'POST':
+        hw8Form = Hw8Form(request.POST)
+        if hw8Form.is_valid():
+            email = hw8Form.cleaned_data['email']
+            q1 = hw8Form.cleaned_data['q1']
+            q2 = hw8Form.cleaned_data['q2']
+            points, gradeTable = grade(Hw8_key,
+                                       {'q1': q1, 'q2': q2},
+                                       Hw8Form())
+            emailGrade(8, courseLinks[1], courseNames[1],
+                       weekLinks[8], 'week 8',
+                       homeworkLinks[8], 'homework 8',
+                       points['gs'], points['gf'], (int)(points['gp']*100),
+                       email, timezone.now(),
+                       gradeTable
+            )
+            item = Hw8_submit(email=email, q1=q1, q2=q2,
+                              g1=points['q1'], g2=points['q2'],
+                              gs=points['gs'],
+                              gf=points['gf'], gp=points['gp'],
+                              hasGraded=True,
+                              time=timezone.now()
+            )
+            item.save()
+            return HttpResponseRedirect(reverse('submitted'))
+
+    # default action
+    return render(request, 'homework8.html',
+                  {'hwForm': Hw8Form()})
+
+
+def hw9(request):
+    if request.method == 'POST':
+        hw9Form = Hw9Form(request.POST)
+        if hw9Form.is_valid():
+            email = hw9Form.cleaned_data['email']
+            q1 = hw9Form.cleaned_data['q1']
+            q2 = hw9Form.cleaned_data['q2']
+            q3 = hw9Form.cleaned_data['q3']
+            q4 = hw9Form.cleaned_data['q4']
+            q5 = hw9Form.cleaned_data['q5']
+            points, gradeTable = grade(Hw9_key,
+                                       {'q1': q1, 'q2': q2, 'q3': q3, 'q4': q4, 'q5': q5},
+                                       Hw9Form())
+            emailGrade(9, courseLinks[1], courseNames[1],
+                       weekLinks[9], 'week 9',
+                       homeworkLinks[9], 'homework 9',
+                       points['gs'], points['gf'], (int)(points['gp']*100),
+                       email, timezone.now(),
+                       gradeTable
+            )
+            item = Hw9_submit(email=email, q1=q1, q2=q2,
+                              q3=q3, q4=q4, q5=q5,
+                              g1=points['q1'], g2=points['q2'],
+                              g3=points['q3'], g4=points['q4'],
+                              g5=points['q5'], gs=points['gs'],
+                              gf=points['gf'], gp=points['gp'],
+                              hasGraded=True,
+                              time=timezone.now()
+            )
+            item.save()
+            return HttpResponseRedirect(reverse('submitted'))
+
+    # default action
+    return render(request, 'homework9.html',
+                  {'hwForm': Hw9Form()})
+
+
+def hw10(request):
+    if request.method == 'POST':
+        hw10Form = Hw10Form(request.POST)
+        if hw10Form.is_valid():
+            email = hw10Form.cleaned_data['email']
+            q1 = hw10Form.cleaned_data['q1']
+            q2 = hw10Form.cleaned_data['q2']
+            q3 = hw10Form.cleaned_data['q3']
+            q4 = hw10Form.cleaned_data['q4']
+            points, gradeTable = grade(Hw10_key,
+                                       {'q1': q1, 'q2': q2, 'q3': q3, 'q4': q4},
+                                       Hw10Form())
+            emailGrade(10, courseLinks[1], courseNames[1],
+                       weekLinks[10], 'week 10',
+                       homeworkLinks[10], 'homework 10',
+                       points['gs'], points['gf'], (int)(points['gp']*100),
+                       email, timezone.now(),
+                       gradeTable
+            )
+            item = Hw10_submit(email=email, q1=q1, q2=q2,
+                               q3=q3, q4=q4,
+                               g1=points['q1'], g2=points['q2'],
+                               g3=points['q3'], g4=points['q4'],
+                               gs=points['gs'],
+                               gf=points['gf'], gp=points['gp'],
+                               hasGraded=True,
+                               time=timezone.now()
+            )
+            item.save()
+            return HttpResponseRedirect(reverse('submitted'))
+
+    # default action
+    return render(request, 'homework10.html',
+                  {'hwForm': Hw10Form()})
+
+
+def hw11(request):
+    if request.method == 'POST':
+        hw11Form = Hw11Form(request.POST)
+        if hw11Form.is_valid():
+            email = hw11Form.cleaned_data['email']
+            q1 = hw11Form.cleaned_data['q1']
+            q2 = hw11Form.cleaned_data['q2']
+            points, gradeTable = grade(Hw11_key,
+                                       {'q1': q1, 'q2': q2},
+                                       Hw11Form())
+            emailGrade(11, courseLinks[1], courseNames[1],
+                       weekLinks[11], 'week 11',
+                       homeworkLinks[11], 'homework 11',
+                       points['gs'], points['gf'], (int)(points['gp']*100),
+                       email, timezone.now(),
+                       gradeTable
+            )
+            item = Hw11_submit(email=email, q1=q1, q2=q2,
+                               g1=points['q1'], g2=points['q2'],
+                               gs=points['gs'],
+                               gf=points['gf'], gp=points['gp'],
+                               hasGraded=True,
+                               time=timezone.now()
+            )
+            item.save()
+            return HttpResponseRedirect(reverse('submitted'))
+
+    # default action
+    return render(request, 'homework11.html',
+                  {'hwForm': Hw11Form()})
+
+
+def hw12(request):
+    if request.method == 'POST':
+        hw12Form = Hw12Form(request.POST)
+        if hw12Form.is_valid():
+            email = hw12Form.cleaned_data['email']
+            q1 = hw12Form.cleaned_data['q1']
+            q2 = hw12Form.cleaned_data['q2']
+            q3 = hw12Form.cleaned_data['q3']
+            q4 = hw12Form.cleaned_data['q4']
+            points, gradeTable = grade(Hw12_key,
+                                       {'q1': q1, 'q2': q2, 'q3': q3, 'q4': q4},
+                                       Hw12Form())
+            emailGrade(12, courseLinks[1], courseNames[1],
+                       weekLinks[12], 'week 12',
+                       homeworkLinks[12], 'homework 12',
+                       points['gs'], points['gf'], (int)(points['gp']*100),
+                       email, timezone.now(),
+                       gradeTable
+            )
+            item = Hw12_submit(email=email, q1=q1, q2=q2,
+                               q3=q3, q4=q4,
+                               g1=points['q1'], g2=points['q2'],
+                               g3=points['q3'], g4=points['q4'],
+                               gs=points['gs'],
+                               gf=points['gf'], gp=points['gp'],
+                               hasGraded=True,
+                               time=timezone.now()
+            )
+            item.save()
+            return HttpResponseRedirect(reverse('submitted'))
+
+    # default action
+    return render(request, 'homework12.html',
+                  {'hwForm': Hw12Form()})
+
+
+def hw13(request):
+    if request.method == 'POST':
+        hw13Form = Hw13Form(request.POST)
+        if hw13Form.is_valid():
+            email = hw13Form.cleaned_data['email']
+            q1 = hw13Form.cleaned_data['q1']
+            q2 = hw13Form.cleaned_data['q2']
+            q3 = hw13Form.cleaned_data['q3']
+            q4 = hw13Form.cleaned_data['q4']
+            points, gradeTable = grade(Hw13_key,
+                                       {'q1': q1, 'q2': q2, 'q3': q3, 'q4': q4},
+                                       Hw13Form())
+            emailGrade(13, courseLinks[1], courseNames[1],
+                       weekLinks[13], 'week 13',
+                       homeworkLinks[13], 'homework 13',
+                       points['gs'], points['gf'], (int)(points['gp']*100),
+                       email, timezone.now(),
+                       gradeTable
+            )
+            item = Hw13_submit(email=email, q1=q1, q2=q2,
+                               q3=q3, q4=q4,
+                               g1=points['q1'], g2=points['q2'],
+                               g3=points['q3'], g4=points['q4'],
+                               gs=points['gs'],
+                               gf=points['gf'], gp=points['gp'],
+                               hasGraded=True,
+                               time=timezone.now()
+            )
+            item.save()
+            return HttpResponseRedirect(reverse('submitted'))
+
+    # default action
+    return render(request, 'homework13.html',
+                  {'hwForm': Hw13Form()})
+
+
+def hw14(request):
+    if request.method == 'POST':
+        hw14Form = Hw14Form(request.POST)
+        if hw14Form.is_valid():
+            email = hw14Form.cleaned_data['email']
+            q1 = hw14Form.cleaned_data['q1']
+            q2 = hw14Form.cleaned_data['q2']
+            q3 = hw14Form.cleaned_data['q3']
+            points, gradeTable = grade(Hw14_key,
+                                       {'q1': q1, 'q2': q2, 'q3': q3},
+                                       Hw14Form())
+            emailGrade(14, courseLinks[1], courseNames[1],
+                       weekLinks[14], 'week 14',
+                       homeworkLinks[14], 'homework 14',
+                       points['gs'], points['gf'], (int)(points['gp']*100),
+                       email, timezone.now(),
+                       gradeTable
+            )
+            item = Hw14_submit(email=email, q1=q1, q2=q2, q3=q3,
+                               g1=points['q1'], g2=points['q2'],
+                               g3=points['q3'], gs=points['gs'],
+                               gf=points['gf'], gp=points['gp'],
+                               hasGraded=True,
+                               time=timezone.now()
+            )
+            item.save()
+            return HttpResponseRedirect(reverse('submitted'))
+
+    # default action
+    return render(request, 'homework14.html',
+                  {'hwForm': Hw14Form()})
+
+
+def hw15(request):
+    if request.method == 'POST':
+        hw15Form = Hw15Form(request.POST)
+        if hw15Form.is_valid():
+            email = hw15Form.cleaned_data['email']
+            q1 = hw15Form.cleaned_data['q1']
+            q2 = hw15Form.cleaned_data['q2']
+            points, gradeTable = grade(Hw15_key,
+                                       {'q1': q1, 'q2': q2},
+                                       Hw15Form())
+            emailGrade(15, courseLinks[1], courseNames[1],
+                       weekLinks[15], 'week 15',
+                       homeworkLinks[15], 'homework 15',
+                       points['gs'], points['gf'], (int)(points['gp']*100),
+                       email, timezone.now(),
+                       gradeTable
+            )
+            item = Hw15_submit(email=email, q1=q1, q2=q2,
+                               g1=points['q1'], g2=points['q2'],
+                               gs=points['gs'],
+                               gf=points['gf'], gp=points['gp'],
+                               hasGraded=True,
+                               time=timezone.now()
+            )
+            item.save()
+            return HttpResponseRedirect(reverse('submitted'))
+
+    # default action
+    return render(request, 'homework15.html',
+                  {'hwForm': Hw15Form()})
+
+
+def hw16(request):
+    if request.method == 'POST':
+        hw16Form = Hw16Form(request.POST)
+        if hw16Form.is_valid():
+            email = hw16Form.cleaned_data['email']
+            q1 = hw16Form.cleaned_data['q1']
+            q2 = hw16Form.cleaned_data['q2']
+            q3 = hw16Form.cleaned_data['q3']
+            points, gradeTable = grade(Hw16_key,
+                                       {'q1': q1, 'q2': q2, 'q3': q3},
+                                       Hw16Form())
+            emailGrade(16, courseLinks[1], courseNames[1],
+                       weekLinks[16], 'week 16',
+                       homeworkLinks[16], 'homework 16',
+                       points['gs'], points['gf'], (int)(points['gp']*100),
+                       email, timezone.now(),
+                       gradeTable
+            )
+            item = Hw16_submit(email=email, q1=q1, q2=q2,
+                               q3=q3,
+                               g1=points['q1'], g2=points['q2'],
+                               g3=points['q3'],
+                               gs=points['gs'],
+                               gf=points['gf'], gp=points['gp'],
+                               hasGraded=True,
+                               time=timezone.now()
+            )
+            item.save()
+            return HttpResponseRedirect(reverse('submitted'))
+
+    # default action
+    return render(request, 'homework16.html',
+                  {'hwForm': Hw16Form()})
+
+
 ######################################################################
 #                      grade function                                #
 ######################################################################

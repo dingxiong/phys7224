@@ -1,0 +1,139 @@
+{% extends "base2nd.html" %}
+{% load staticfiles %}
+
+{% block homework %}
+
+<h2 class="course-page-header">
+  Homework 15  
+</h2>
+
+<!-- -------------------------------------------------- -->
+<!-- the content of homework -->
+<div class="course-quiz-preamble">
+  For this homework, you can submit up to 3 times. <br>
+</div>
+
+
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+
+  <!---------------- q1 ---------------- -->
+  <div style="padding:10px 5px 15px 20px;">
+    <h4>
+      Q15.1 \(\quad\) \(C_3\) factorization
+    </h4>
+    If a system has a discrete symmetry, then the contribution of a
+    periodic orbit to the dynamical zeta function and spectral 
+    determinant can be factorized into several terms. Each of them
+    corresponds to an irreducible representation. Let us work out the
+    factorization of the dynamical zeta function for a system whose
+    dynamics is invariant under the cyclic group \(C_3\).
+    <br><br>
+
+    The following is the character table of \(C_3\):
+    \begin{bmatrix}
+    & e & C^{1/3} & C^{2/3}  \\
+    A     & 1 &    1    &   1      \\
+    \Gamma_1  & 1 & \omega  &  \omega^2 \\
+    \Gamma_2  & 1 & \omega^2  &  \omega \\
+    \end{bmatrix}
+    Here, \(\omega = e^{i2\pi/3}\).
+    It has 3 irreducible representations, and all of them are
+    1-dimensional. As stated in ChaosBook, for 1-dimensional
+    irreducible representation,
+    \[
+    \det(1 - D^{(\mu)}(g)t_{\hat{p}}) = 1 - \chi^{(\mu)}(g)t_{\hat{p}}
+    \]
+    So for a periodic orbit \(p\) with symmetry \(C^{1/3}\) (i.e.,
+    built from three repeats of the
+    relative periodic orbit  \(\hat{p}\)), its contribution
+    to dynamical zeta function is factorized as
+    \(1-t_{\hat{p}}\), \(1-\omega t_{\hat{p}}\),
+    and \(1-\omega^2 t_{\hat{p}}\) corresponding to
+    irreducible representation \(A\), \(\Gamma_1\) and \(\Gamma_2\)
+    respectively. The product of these 3 terms gives the total contribution,
+    which is \(1-t_{\hat{p}}^3\). This makes sense because if we ignore
+    symmetry, the contribution should be \(1-t_p\), and
+    \(t_p = t_{\hat{p}}^3\). Here \(\hat{p}\) is the relative periodic orbit
+    in the full state space,
+    periodic in the
+    fundamental domain. This result corresponds to the
+    second row of the following table. Each row represents the contribution
+    from periodic orbits with a given symmetry, and each column represents
+    the contribution to a given irreducible representation. The second 
+    column is the total contribution.
+    \begin{bmatrix}
+    &  &  A & \Gamma_1 & \Gamma_2 \\
+    e :     & ? &  & &   \\
+    C^{1/3} : & 1-t_{\hat{p}^3} = & 1-t_{\hat{p}} & 1-\omega t_{\hat{p}} & 1-\omega^2 t_{\hat{p}} \\
+    C^{2/3} : & &   & & *
+    \end{bmatrix}
+    So you can fill out the remaining entries in the
+    above table. What are the terms at position (?)
+
+    
+    <br><br>
+    {{hwForm.q1}}
+  </div>
+
+
+  <!---------------- q2 ---------------- -->
+  <div style="padding:10px 5px 15px 20px;">
+    <h4>
+      Q15.2 \(\quad\) \(C_{4v}\) factorization
+    </h4>
+    Chaosbook shows how dynamics equivariant under symmetries of a
+    triangle, group \(C_{3v}\) is factorized. Now let us turn to
+    dynamics invariant under symmetries of a square:
+
+    \(C_{4v} = \{ e, C^{1/4}, C^{2/4}, C^{3/4}, \sigma,
+    \sigma C^{1/4}, \sigma C^{2/4}, \sigma C^{3/4} \} \). 
+
+    \(C_{nv}\) turns out to have
+    different irreducible representation structures for
+    \(n=odd\) and \(n=even\).
+    This case is even, and \(C_{4v}\) has 5 different irreducible
+    representations:
+    \(\{A_1, A_2, B_1, B_2, E\}\). The first 4 are 1-dimensional, and
+    \(E\) is 2-dimensional (verify for yourself that this satisfies the
+    dimensions rule for the decomposition of the regular representation
+    ).
+    <br>
+    \(A_1\) and \(A_2\) are symmetric under quarter-circle rotations
+    \(C^{1/4}, C^{3/4}\), while \(B_1\) and \(B_2\) are
+    antisymmetric.
+    <br>
+    
+    First, figure out the character table of
+    \(C_{4v}\). Then factorize the dynamical zeta function
+    into different irreducible representations for periodic orbits with
+    different symmetries. What is the contribution of a periodic orbit
+    with symmetry \(\sigma C^{2/4}\) to dynamical zeta function corresponding
+    to irreducible representation \(E\) ? 
+
+    
+    <br><br>
+    {{hwForm.q2}}
+  </div>
+  
+
+  <!---------------- email ---------------- -->
+  <div style="padding:10px 5px 15px 20px;">
+    <h4>Your e-mail</h4>
+    Please enter your e-mail (the same you are registered under in Piazza) to receive your grades:
+    <br><br>
+    
+    {{hwForm.email}}
+  </div>
+
+  <!---------------- submit ---------------- -->
+  <br><br><br>
+  <p style="text-align:center;">
+    <input  type="submit" value="Submit">
+  </p>
+  
+</form>
+
+
+
+{% endblock %}

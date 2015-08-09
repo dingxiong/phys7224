@@ -222,3 +222,90 @@ class Hw7Form(forms.ModelForm):
         fields = ['q1', 'q2', 'q3', 'q4', 'email']
 
 
+class Hw8Form(forms.ModelForm):
+    class Meta:
+        model = Hw8_submit
+        fields = ['q1', 'q2', 'email']
+
+
+class Hw9Form(forms.ModelForm):
+    class Meta:
+        model = Hw9_submit
+        fields = ['q1', 'q2', 'q3', 'q4', 'q5', 'email']
+
+
+class Hw10Form(forms.ModelForm):
+    class Meta:
+        model = Hw10_submit
+        fields = ['q1', 'q2', 'q3', 'q4', 'email']
+
+
+class Hw11Form(forms.ModelForm):
+    class Meta:
+        model = Hw11_submit
+        fields = ['q1', 'q2', 'email']
+
+
+class Hw12Form(forms.ModelForm):
+    class Meta:
+        model = Hw12_submit
+        fields = ['q1', 'q2', 'q3', 'q4', 'email']
+
+
+class Hw13Form(forms.ModelForm):
+    class Meta:
+        model = Hw13_submit
+        fields = ['q1', 'q2', 'q3', 'q4', 'email']
+
+
+class Hw14Form(forms.ModelForm):
+    q3 = forms.ChoiceField(required=False,
+                           widget=forms.RadioSelect,
+                           choices=(
+                               ('1st', r"\( \rho_0 \)"),
+                               ('2nd', r"\( \rho_1 \)"),
+                               ('3rd', r"\( \rho_2 \)"),
+                               ('4th', r"\( \rho_3 \)"),
+                               ('5th', r"\( \rho_4 \)"),
+                           ))
+
+    class Meta:
+        model = Hw14_submit
+        fields = ['q1', 'q2', 'q3', 'email']
+
+
+class Hw15Form(forms.ModelForm):
+    q1 = forms.ChoiceField(required=False,
+                           widget=forms.RadioSelect,
+                           choices=(
+                               ('1st', r"\( 1 - t_{\hat{p}}^3,   1 - \omega t_{\hat{p}} \)"),
+                               ('2nd', r"\( 1 - t_{\hat{p}}^3,   1 - \omega^2 t_{\hat{p}} \)"),
+                               ('3rd', r"\( 1 - t_{\hat{p}}^3,   1 - t_{\hat{p}} \)"),
+                               ('4th', r"\( (1 - t_{\hat{p}})^3, 1 - \omega^2 t_{\hat{p}} \)"),
+                               ('5th', r"\( (1 - t_{\hat{p}})^3, 1 - \omega t_{\hat{p}} \)"),
+                               ('6th', r"\( 1 - \omega t_{\hat{p}}^3, 1 - t_{\hat{p}} \)"),
+                               ('7th', r"\( 1 - \omega^2 t_{\hat{p}}^3, 1 - t_{\hat{p}} \)"),
+                               ('8th', r"\( (1 - t_{\hat{p}})^3, 1 - t_{\hat{p}} \)")
+                           ))
+
+    q2 = forms.ChoiceField(required=False,
+                           widget=forms.RadioSelect,
+                           choices=(
+                               ('1st', r"\( 1 - t_{\hat{p}}^2 \)"),
+                               ('2nd', r"\( ( 1 - t_{\hat{p}}^2 )^2 \)"),
+                               ('3rd', r"\( ( 1 - t_{\hat{p}} )^2 \)"),
+                               ('4th', r"\( ( 1 - t_{\hat{p}} )^4 \)"),
+                               ('5th', r"\( ( 1 + t_{\hat{p}} )^4 \)"),
+                               ('6th', r"\( ( 1 + t_{\hat{p}}^2 )^2 \)"),
+                               ('7th', r"\( ( 1 + t_{\hat{p}} )^2 \)"),
+                           ))
+
+    class Meta:
+        model = Hw15_submit
+        fields = ['q1', 'q2', 'email']
+
+
+class Hw16Form(forms.ModelForm):
+    class Meta:
+        model = Hw16_submit
+        fields = ['q1', 'q2', 'q3', 'email']

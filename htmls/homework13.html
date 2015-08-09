@@ -1,0 +1,168 @@
+{% extends "base2nd.html" %}
+{% load staticfiles %}
+
+{% block homework %}
+
+<h2 class="course-page-header">
+  Homework 13  
+</h2>
+
+<!-- -------------------------------------------------- -->
+<!-- the content of homework -->
+<div class="course-quiz-preamble">
+  For this homework, you can submit up to 3 times. <br>
+  You need to write the code by yourself.
+</div>
+
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+
+  <!---------------- q1 ---------------- -->
+  <div style="padding:10px 5px 15px 20px;">
+    <h4>
+      Q13.1 \(\quad\)  Chains of piecewise linear maps (Example 24.1)
+    </h4>
+    Let us simulate the diffusion process in the chains of piecewise 
+    linear maps defined in (24.9). Please write a program to simulate
+    this system. Choose a large number of equally spaced points 
+    \(x_i\) in range
+    [-1, 1] as the initial conditions, and iterate them for a certain number
+    of steps. Since this map is anti-symmetric, we expect the mean drift is zero,
+    so we just record \(x_i^2\). Figure (a) below is what I got for slope
+    \(\Lambda = 4 \). The y-axis is the mean value 
+    of \(x_i^2\) at each iteration step,
+    and the x-axis is the iteration index. As is shown, 
+    the slope of the straight line is approximate 0.499, so the diffusion 
+    constant is about 0.2495 in this case.
+    <br><br>
+    
+    Set \(\Lambda = 5\), what is the approximate diffusion constant in your
+    simulation ?
+
+
+    <br><br>
+    {{hwForm.q1}}
+  </div>
+
+
+  <!---------------- q2 ---------------- -->
+  <div style="padding:10px 5px 15px 20px;">
+    <h4>
+      Q13.2 \(\quad\)  modification of Example 24.4
+    </h4>
+    In example 24.4, we choose an appropriate slope of the linear
+    map \(\Lambda = 2(\sqrt{2}+1)\) such that the critical point
+    is mapped onto the right border of \(\mathcal{M}_{1_+}\), 
+    therefore region \(\mathcal{M}_{2_+}\) is mapped to 
+    \(\mathcal{M}_{0_+}\) and \(\mathcal{M}_{1_+}\). Now try to find the
+    appropriate slope \(\Lambda\) in range [4, 6] such that the critical
+    point is mapped onto the right border of \(\mathcal{M}_{0_+}\). Now 
+    follow the same procedure in example 24.4 to find the dynamical zeta 
+    function and try to get the diffusion constant \(D\) in this case.
+    In order to validate your result, please check \(1/\zeta(0,1) = 0\).
+    Also, you can simulate diffusion for this particular slope and 
+    obtain the numerical diffusion constant to double check your analytical
+    result.
+    <br><br>
+    
+    What is the diffusion coefficient in this case ? ( Note, at least 5 significant 
+    digits should be accurate. )
+
+    
+    <br><br>
+    {{hwForm.q2}}
+  </div>
+  
+  <!---------------- q3 ---------------- -->
+  <div style="padding:10px 5px 15px 20px;">
+    <h4>
+      Q13.3 \(\quad\) Diffusion for odd integer \(\Lambda\) (Exercise 24.1)
+    </h4>
+    Example 24.2 illustrates the process of applying cycle expansion to
+    the piecewise linear map to calculate the diffusion constant for 
+    the case \(\Lambda\) being even. Now let us turn to the 
+    case that \(\Lambda\) is odd. 
+    For example, when \(\Lambda = 3\), interval [0, 1] can be divided
+    into 4 pieces: \(\{[0,1/3), [1/3, 1/2), (1/2, 2/3), [2/3,1]\}\), with
+    the corresponding symbols \(\{ 0^+, 1^+, 1^-, 0^-\}\). You can easily 
+    verify that 
+    \(f(\mathcal{M}_{1^+}) = \mathcal{M}_{0^+} \cup \mathcal{M}_{1^+}\),
+    so sequences \(1^+1^-\) and \(1^+0^-\)
+    are pruned. Similar argument goes for region \(1^-\). 
+    In this sense, we can treat sequences
+    \(\{1^+0^+, 1^-0^-, 1^+1^+0^+, 1^-1^-0^-, \cdots\}\) as 
+    new symbols, and we get the dynamical zeta
+    function as
+    \[
+    1/\zeta = 1 - t_{0^+} - t_{0^-} - t_{1^+0^+} - t_{1^-0^-} 
+    - t_{1^+1^+0^-} - t_{1^-1^-0^-}
+    - \cdots
+    \]
+    You may
+    consult example 24.4 to help you understand the above process.
+    The difference between \(\Lambda\) even and \(\Lambda\) odd 
+    case is that symbolic dynamics in the latter case
+    has infinite number of symbols, as opposed to the finite
+    expression in formula (24.17).
+    After you get the dynamical function, you can calculate the
+    mean cycle length (24.15) and mean cycle displacement (24.16) to 
+    obtain the diffusion constant. 
+    <br><br>
+    
+    We can generalize the above analysis to any odd \(\Lambda\) case.
+    What is the mean cycle length for \(\Lambda=11\) ? 
+
+    
+    <br><br>
+    {{hwForm.q3}}
+  </div>
+
+  <!---------------- q4 ---------------- -->
+  <div style="padding:10px 5px 15px 20px;">
+    <h4>
+      Q13.4 \(\quad\) Dependence of diffusion constant on slope -- Q13.1 continued 
+    </h4>
+
+    If the slope \(\Lambda\) is changed continuously, you may expect that
+    the diffusion constant changes continuously too in a similar way.
+    However, as shown in Chaosbook figure 24.5, the dependence is not 
+    a smooth function. This is not the first time we encounter such 
+    a situation. Remember that in homework 10, we observe that a small change 
+    of parameter in Henon map results in a totally different 
+    natural measure. In this sense, structural stability should not 
+    be an easy assumption in dynamical systems.
+    <br><br>
+    
+    Figure (b) below shows the numerical diffusion constant I got for \(5<\Lambda<6\).
+    Although only 100 points are chosen in this range, we still can 
+    see the non-smoothness of this curve. Try to plot the diffusion constant
+    for range \(3<\Lambda<4\). What is the approximate maximal 
+    diffusion coefficient in this range ?
+
+    
+    <br><br>
+    {{hwForm.q4}}
+  </div>
+
+
+  <!---------------- email ---------------- -->
+  <div style="padding:10px 5px 15px 20px;">
+    <h4>Your e-mail</h4>
+    Please enter your e-mail (the same you are registered under in Piazza) to receive your grades:
+    <br><br>
+    
+    {{hwForm.email}}
+  </div>
+
+  <!---------------- submit ---------------- -->
+  <br><br><br>
+  <p style="text-align:center;">
+    <input  type="submit" value="Submit">
+  </p>
+  
+</form>
+
+<img src="{% static "figs/diff4.png" %}" alt="golden map" height="300" width="300" /> 
+<img src="{% static "figs/diff56.png" %}" alt="golden map" height="300" width="300" />
+
+{% endblock %}

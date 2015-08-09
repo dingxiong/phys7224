@@ -1,0 +1,233 @@
+{% extends "base2nd.html" %}
+{% load staticfiles %}
+
+{% block homework %}
+
+<h2 class="course-page-header">
+  Homework 9  
+</h2>
+
+<!-- -------------------------------------------------- -->
+<!-- the content of homework -->
+<div class="course-quiz-preamble">
+  There is no programming questions in this homework. Everyone can submit up to 3 times.
+</div>
+
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+
+  <!---------------- q1 ---------------- -->
+  <div style="padding:10px 5px 15px 20px;">
+    <h4>
+      Q9.1 \(\quad\) Transition matrix and cycle counting (Exercise 18.5)
+    </h4>
+    Given the transition graph at the bottom of this page. 
+    You can easily get the transition matrix:
+    \[
+    T =
+    \begin{bmatrix}
+    a & b \\
+    c & 0 
+    \end{bmatrix}
+    \]
+    As is known from Chapter 18 formula (18.6), the trace \(tr T^n\) counts
+    the number of periodic orbits of length \(n\), namely, \(N_n\),
+    in this system. 
+    What is \(N_3\)
+    ,the number
+    of periodic orbits with period 3 given \(a=1\), \(b=2\), \(c=3\) ? 
+    ( please input an integer. )
+
+    
+    <br><br>
+    {{hwForm.q1}}
+  </div>
+
+
+  <!---------------- q2 ---------------- -->
+  <div style="padding:10px 5px 15px 20px;">
+    <h4>
+      Q9.2 \(\quad\) Transition matrix and cycle counting -- countinued
+    </h4>
+    From formulae (18.1) and (18.4), you know that the topological entropy
+    indicates the average growth rate of the number of perodic orbits 
+    versus the length of the orbit, and it is given by the largest
+    eigenvalue of the transition matrix.
+    For the same system as in Q9.1 with
+    the same parameters, what is the topological entropy ? 
+    (at least 3 significant digits should be accurate)
+
+    
+    <br><br>
+    {{hwForm.q2}}
+  </div>
+  
+  <!---------------- q3 ---------------- -->
+  <div style="padding:10px 5px 15px 20px;">
+    <h4>
+      Q9.3 \(\quad\) Alphabet \(\{a, b, c\}\) pruned \(\_ab\_\) (exercise 18.16)
+    </h4>
+    Suppose there are three nodes \(\{a, b, c\}\) in the transition graph.
+    There are transitions between each two nodes (same or different) except
+    transition from \(a\) to \(b\). So basically, the transition graph
+    is
+    \[
+    T = 
+    \begin{bmatrix}
+    1 & 1 & 1 \\
+    0 & 1 & 1 \\
+    1 & 1 & 1 
+    \end{bmatrix}
+    \] 
+    Let us try to find the spectral determinant by formula (18.13).
+    \[
+    \begin{align*}
+    \det(1-zT)  = & 1 - (t_a + t_b + t_c + t_{ac} + t_{bc} + t_{acb}) \\
+    & + (t_at_b + t_bt_c + t_at_c + t_at_{bc} + t_bt_{ac}) \\
+    & - t_at_bt_c \\
+    = &	1 - (3z+2z^2+z^3) + (3z^2+2z^3) - z^3 \\
+    = & 1- 3z + z^2
+    \end{align*}
+    \]
+    The above expression is arranged in the same way as formula (18.13): 
+    we first enumerate all single non-intersecting cycles, and then enumerate 
+    all non-intersecting cycle pairs. Last, the non-intersecting cycle triples
+    are enumerated. Note, 4 non-intersecting cycles do not exist simultaneously
+    inside this system, so the above expression is complete. Also pay attention
+    to how the pruning rule is implemented in it. \(t_{abc}\) and \(t_{acb}\)
+    are two different orbits, but \(t_{abc}\) is pruned while \(t_{acb}\) is 
+    kept.
+    <br><br>
+    
+    Similarly, if both \(\_ab\_\) and \(\_ac\_\) are pruned in the system, 
+    you can write the spectral determinant in the same way. What is the 
+    coefficient of term \(z\) ? (answer should be an integer) 
+
+    
+    <br><br>
+    {{hwForm.q3}}
+  </div>
+
+  <!---------------- q4 ---------------- -->
+  <div style="padding:10px 5px 15px 20px;">
+    <h4>
+      Q9.4 \(\quad\) Alphabet \(\{a, b, c\}\) pruned \(\_ab\_\) -- continued
+    </h4>
+
+    If the pruning rule is finite and transition matrix is known, we can 
+    use formula (18.13) to write down the spectral determinant of this
+    system, from which, topological entropy and the number of periodic 
+    orbits are all known, just as we did in Q9.3. But when the transition
+    graph is infinite, we need to turn to topological zeta function 
+    (18.16) to valuate spectral determinant. But it does not mean that
+    topological zeta function can only be applied to infinite graphs, but 
+    it also works for finite graphs like the one in Q9.3. Let us see how
+    it works.
+
+    \[
+    \begin{align*}
+    \det(1-zT)  = & \prod_p(1-t_p) \\
+    = & (1-t_a)(1-t_b)(1-t_c)(1-t_{ac})(1-t_{bc}) \\	
+    & (1-t_{acb})(1-t_{aac})(1-t_{bbc})(1-t_{cca})(1-t_{ccb}) \\
+    = & 1 - (t_a + t_b + t_c) 
+    + (t_at_b + t_bt_c + t_at_c - t_{ac} - t_{bc}) \\
+    &  + (  - t_at_bt_c + t_at_{bc} + t_at_{ac} + t_bt_{bc} 
+    + t_bt_{ac} + t_ct_{bc} + t_ct_{ac}  \\
+    & - t_{acb} - t_{aac} - t_{bbc} - t_{cca} - t_{ccb}) \\
+    & \\
+    = &	1 - 3z + (3z^2-2z^2) + (-z^3+6z^3-5z^3) \\
+    = & 1- 3z + z^2
+    \end{align*}
+    \] 
+
+    In the above expression, we have omitted periodic orbits whose period
+    is larger than 3, and also we only keep terms up \(z^3\) in the 
+    expansion. We are sure that the higher order terms are all canceled out
+    as discussed in section 18.6. So actually, the topological zeta function
+    works as well as formula (18.13) for finite graphs. Note the difference 
+    between these two approaches is that we only count non-intersecting cycles
+    in formula (18.13), but this restriction is not applied to topological zeta
+    function, as shown in the above expansion. In this sense, topological 
+    zeta function seems more convenient.
+    <br><br>
+    
+    Similarly, if both \(\_ab\_\) and \(\_ac\_\) are pruned in the system, 
+    you can write the topological zeta function in the same way. What is the 
+    coefficient of term \(z^2\) ? 
+    (Note the coefficient of \(z^2\), not the coefficient of \(z\) as in Q9.3)  
+    
+    
+    <br><br>
+    {{hwForm.q4}}
+  </div>
+
+  <!---------------- q5 ---------------- -->
+  <div style="padding:10px 5px 15px 20px;">
+    <h4>
+      Q9.5 \(\quad\)  Counting periodic orbit (Example 18.8, 18.9)
+    </h4>
+
+    In chapter 18, we concentrate almost on one question: how to 
+    count periodic orbits ? Formulae (18.7) and (18.24) reveal the relation
+    between the number of periodic orbits and the topological zeta function
+    . In deriving these formulae, we rely heavily on two identities:
+    \[
+    \ln det = tr \ln
+    \]
+    and 
+    \[
+    \ln(1-x) = -(x + \frac{x^2}{2} + \frac{x^3}{3} + \cdots)
+    \]
+    Now, let us turn to the third identity which is important for us to 
+    understand formula (18.34):
+    \[
+    \frac{1}{1-x} = 1 + x + x^2 + \cdots
+    \]
+    Let's turn to example 18.8, the information about the number of 
+    periodic orbits is coded in  
+    \( \sum_{n=1} N_n z^n = \frac{Nz}{1-Nz}\). It is tempting to set 
+    \(z=1\) to
+    get the total number of periodic orbits inside these system, but it turns
+    out to be \(\frac{N}{1-N}\). What ? The problem is that here  
+    \(z\) serves as a book tracking variable, which will be set to 1 in the
+    end. But when it appears in the denominator, it is not appropriate to 
+    set it to 1 immediately, we need to treat it as a Taylor series.
+    For example, in this
+    case,
+    \[
+    \sum_{n=1}N_nz^n = Nz(1+Nz+(Nz)^2 + (Nz)^3 + \cdots)
+    \,.
+    \]
+    Therefore, we obtain \(N_n = N^n\) which makes sense.
+    <br><br>
+    
+    Now turn to example 18.9. You are given the topological zeta function
+    \(1/\zeta = 1 - z - 2z^4 + z^8\), what is the number of periodic
+    orbits with period 15, namely, what is \(N_{15}\) ? ( hint: you can
+    use Mathematica to verify your result if it is available )
+  
+
+    <br><br>
+    {{hwForm.q5}} 
+  </div>
+
+  <!---------------- email ---------------- -->
+  <div style="padding:10px 5px 15px 20px;">
+    <h4>Your e-mail</h4>
+    Please enter your e-mail (the same you are registered under in Piazza) to receive your grades:
+    <br><br>
+    
+    {{hwForm.email}}
+  </div>
+
+  <!---------------- submit ---------------- -->
+  <br><br><br>
+  <p style="text-align:center;">
+    <input  type="submit" value="Submit">
+  </p>
+  
+</form>
+
+<img src="{% static "figs/hw9q1.png" %}" alt="transition graph" height="300" width="300" />
+
+{% endblock %}

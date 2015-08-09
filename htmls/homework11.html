@@ -1,0 +1,127 @@
+{% extends "base2nd.html" %}
+{% load staticfiles %}
+
+{% block homework %}
+
+<h2 class="course-page-header">
+  Homework 11  
+</h2>
+
+<!-- -------------------------------------------------- -->
+<!-- the content of homework -->
+<div class="course-quiz-preamble">
+  For this homework, you can submit up to 3 times. <br>
+  There is no programming assignment this week.
+</div>
+
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+
+  <!---------------- q1 ---------------- -->
+  <div style="padding:10px 5px 15px 20px;">
+    <h4>
+      Q11.1 \(\quad\) "Golden mean" pruned map (Exercise 22.1)
+    </h4>
+
+    We have tried to study the symbolic dynamics of "Golden mean" pruned
+    map (figure below) before and we conclude that symbolic sequence \(\_00\_\)
+    is pruned. To simplify the discussion, we define a new symbol
+    \(2 = 01\), then 
+    the complete alphabet for the symbolic dynamics in 
+    this system is \(\{1, 2\}\). Any allowed itinerary is an 
+    unrestricted combination of these two symbols.
+    Therefore, the trace formula (21.7) reduces to
+    \[
+    tr \mathcal{L}^n =  \sum_{m=0}^{n} \binom{n}{m}
+    {1 \over \left\vert 1-\Lambda_0^{m} \Lambda_1^{n-m} \right\vert }
+    =  \sum_{k=0}^{\infty} \left(
+    {1 \over |\Lambda_0| \Lambda_0^{k}} +
+    {1 \over |\Lambda_1| \Lambda_1^{k}}
+    \right)^n
+    \,.
+    \]
+    Here \(\Lambda_0 = -\Lambda\) and \(\Lambda_1 = -\Lambda^2\) 
+    come from the contributions of orbit parts with symbols 
+    \(1\) and \(2\) to the 
+    trace respectively ( You should know why ). Note,
+    \(\Lambda=(\sqrt{5}+1)/2\). This is 
+    very similar to the piecewise-linear map. Please consult
+    Example 21.2 to understand the above expression and confirm that 
+    the identity is mathematically correct. 
+    <br><br>
+    
+    Now turn to formula 
+    (22.3), which reveals the relation between trace and 
+    spectral determinant of the evolution operator. 
+    Try to obtain the explicit form of spectral determinant.
+    What is the coefficient of term \(z\) in the spectral determinant ?
+    Note the expression for trace given above is for the "new"
+    system \( \{1, 2\}\). Here, we are interested in the dynamics in the 
+    "original" golden map. The only differenece is the topological 
+    length for symbol 2, which is 2 in the "orgianal" system, so \(z^2\) 
+    should be assign to the part of orbit which has symbol 2.
+
+    <br><br>
+    {{hwForm.q1}}
+  </div>
+
+
+  <!---------------- q2 ---------------- -->
+  <div style="padding:10px 5px 15px 20px;">
+    <h4>
+      Q11.2 \(\quad\) dynamic zeta function (Exercise 22.2)
+    </h4>
+    For the piecewise-linear map, the dynamical zeta function is 
+    \[
+    1/\zeta(z) = \prod_{p} 
+    \left( 1 - \frac{z^{n_{p}}}{|\Lambda_p|} \right)
+    \,.
+    \]
+    Here, the product includes all prime periodic orbits. For this
+    system, we can get a closed form of dynamical zeta function.
+    I recommend two approaches. 
+    <br><br>
+    
+    First, you can enumerate all
+    short periodic orbits inside this system and substitute them into
+    the above formula, remove terms that cancel out each other, then 
+    you are left with the dynamical zeta function. 
+    <br><br>
+    
+    Second, formula (22.28) reveals the relation between zeta function and
+    spectral determinant in this system. Also the spectral determinant 
+    is given in example 22.1. therefore, some simple mathematical derivation
+    can produce the dynamical zeta function.
+    <br><br>
+    
+    After obtaining the dynamical zeta function, try to get its leading
+    eigenvalue. What is it ?
+    Your result should make sense, because the escape rate in
+    this system is zero. ( Note, please input a decimal number )
+
+    
+    <br><br>
+    {{hwForm.q2}}
+  </div>
+  
+
+  <!---------------- email ---------------- -->
+  <div style="padding:10px 5px 15px 20px;">
+    <h4>Your e-mail</h4>
+    Please enter your e-mail (the same you are registered under in Piazza) to receive your grades:
+    <br><br>
+    
+    {{hwForm.email}}
+  </div>
+
+  <!---------------- submit ---------------- -->
+  <br><br><br>
+  <p style="text-align:center;">
+    <input  type="submit" value="Submit">
+  </p>
+  
+</form>
+
+<img src="{% static "figs/goldenMap.png"  %}" alt="golden map" height="300" width="300" />
+
+{% endblock %}

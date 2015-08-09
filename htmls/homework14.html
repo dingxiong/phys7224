@@ -1,0 +1,155 @@
+{% extends "base2nd.html" %}
+{% load staticfiles %}
+
+{% block homework %}
+
+<h2 class="course-page-header">
+  Homework 14  
+</h2>
+
+<!-- -------------------------------------------------- -->
+<!-- the content of homework -->
+<div class="course-quiz-preamble">
+  For this homework, you can submit up to 3 times. <br>
+</div>
+
+
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+
+  <!---------------- q1 ---------------- -->
+  <div style="padding:10px 5px 15px 20px;">
+    <h4>
+      Q14.1 \(\quad\) number of irreducible representations 
+    </h4>
+    Group \( C_{nv}=\{e,C_n,C_n^2,\cdots,C_n^{n-1},\sigma,C_n\sigma,\cdots,
+    C_{n}^{n-1}\sigma\} \) denotes the symmetry group 
+    of a horizontal plane, which is invariant under rotation about the
+    z-axis by \(2\pi/n\), and also invariant under reflection with 
+    respect to a 
+    perpendicular plane.
+    <br><br>
+    
+    Please figure out the multiplication table of this discrete group, 
+    find the number of classes. How many irreducible representations 
+    does \(C_{10v}\) have ? Please think about the general case. Note,
+    even or odd \(n\) results in different formulae.  
+
+    <br><br>
+    {{hwForm.q1}}
+  </div>
+
+
+  <!---------------- q2 ---------------- -->
+  <div style="padding:10px 5px 15px 20px;">
+    <h4>
+      Q14.2 \(\quad\) Character table of \(D_2\) (or \(C_{2v}\))
+    </h4>
+
+    Group \( D_{2}=\{ e, C^{1/2}, \sigma, C^{1/2}\sigma \}\) is
+    an Abelian group, so it has 4 different irreducible 
+    representations. 
+    The incomplete character table of \(D_2\) is listed below
+    \[
+    \begin{bmatrix}
+    & e  & C^{1/2}  & \sigma & C^{1/2}\sigma \\
+    A_1  &   1  &   1  &  1   &  1  \\
+    A_2  &   1  &   1  &  -1  &  -1 \\
+    B_1  &      &      &      &     \\
+    B_2  &      &      &      &  *   \\
+    \end{bmatrix}
+    \]
+    Here \(A_1\) and \(A_2\) are both symmetric irreducible representations whose
+    basis functions are symmetric under rotation \(C^{1/2}\), but the
+    basis function of \(A_2\) 
+    is antisymmetric under reflection \(\sigma\). \(B_1\) and \(B_2\)
+    are both antisymmetric irreducible representation. The difference is 
+    that the basis function of \(B_2\) is symmetric under reflection \(\sigma\).
+    What is the number at position (*) ? 
+    Actually, there are 2 discrete groups of order 4, and both of them are Abelian.
+    The other is \(C_4\). If you like, think about whether these two groups are 
+    isomorphic to each other or not.
+
+    
+    <br><br>
+    {{hwForm.q2}}
+  </div>
+  
+  <!---------------- q3 ---------------- -->
+  <div style="padding:10px 5px 15px 20px;">
+    <h4>
+      Q14.3 \(\quad\) Invariant basis of \(C_{4v}\)
+    </h4>
+    Each irreducible representation of a group is associated 
+    with an invariant subspace. As stated in Chaosbook, 
+    projection operator is the right tool to find the
+    invariant subspaces of a group. For group 
+    \(C_{4v} = \{e, C^{1/4}, C^{2/4}, C^{3/4}, \sigma, \sigma C^{1/4}, \sigma C^{2/4}, 
+    \sigma C^{3/4} \}  \), first figure out its character table, and then
+    use projection operator to figure out all the invariant subspaces. 
+    <br><br>
+
+    For the following candidates, which one  
+    is <b>NOT</b> an invariant subspace of \(C_{4v}\)?
+    \begin{align*}
+    \rho_0(\hat{x}) &=& \frac{1}{8}\left[
+    \rho(\hat{x}) ~+~ \rho(C^{2/4} \hat{x}) ~+~ \rho(C^{1/4} \hat{x}) ~+~
+    \rho(C^{3/4} \hat{x}) ~+~ \rho(C^{2/4} \sigma \hat{x}) ~+~
+    \rho(\sigma \hat{x}) ~+~ \rho(\sigma C^{1/4} \hat{x}) 
+    ~+~ \rho(\sigma C^{3/4} \hat{x})  
+    \right]
+    \\
+    \rho_1(\hat{x}) &=& \frac{1}{8}\left[
+    \rho(\hat{x}) ~+~ \rho(C^{2/4} \hat{x}) ~-~ \rho(C^{1/4} \hat{x}) ~-~
+    \rho(C^{3/4} \hat{x}) ~-~ \rho(\sigma C^{2/4} \hat{x}) ~-~
+    \rho(\sigma \hat{x}) ~+~ \rho(\sigma C^{1/4} \hat{x}) 
+    ~+~ \rho(\sigma C^{3/4} \hat{x})
+    \right]  
+    \\
+    \rho_2(\hat{x}) &=& \frac{1}{8}\left[
+    \rho(\hat{x}) ~+~ \rho(C^{2/4} \hat{x}) ~-~ \rho(C^{1/4} \hat{x}) ~-~
+    \rho(C^{3/4} \hat{x}) ~+~ \rho(C^{2/4} \sigma \hat{x}) ~+~
+    \rho(\sigma \hat{x}) ~-~ \rho(\sigma C^{1/4} \hat{x}) 
+    ~-~ \rho(\sigma C^{3/4} \hat{x})
+    \right]
+    \\
+    \rho_3(\hat{x}) &=& \frac{1}{8}\left[
+    \rho(\hat{x}) ~+~ \rho(C^{2/4} \hat{x}) ~+~ \rho(C^{1/4} \hat{x}) ~+~
+    \rho(C^{3/4} \hat{x}) ~-~ \rho(C^{2/4} \sigma \hat{x}) ~-~
+    \rho(\sigma \hat{x}) ~-~ \rho(\sigma C^{1/4} \hat{x}) 
+    ~-~ \rho(\sigma C^{3/4} \hat{x})
+    \right]
+    \\
+    \rho_4(\hat{x}) &=& \frac{1}{8}\left[
+    \rho(\hat{x}) ~-~ \rho(C^{2/4} \hat{x}) ~+~ \rho(C^{1/4} \hat{x}) ~+~
+    \rho(C^{3/4} \hat{x}) ~-~ \rho(C^{2/4} \sigma \hat{x}) ~+~
+    \rho(\sigma \hat{x}) ~-~ \rho(\sigma C^{1/4} \hat{x}) 
+    ~-~ \rho(\sigma C^{3/4} \hat{x})
+    \right]
+    \end{align*}
+
+    
+    <br><br>
+    {{hwForm.q3}}
+  </div>
+
+
+  <!---------------- email ---------------- -->
+  <div style="padding:10px 5px 15px 20px;">
+    <h4>Your e-mail</h4>
+    Please enter your e-mail (the same you are registered under in Piazza) to receive your grades:
+    <br><br>
+    
+    {{hwForm.email}}
+  </div>
+
+  <!---------------- submit ---------------- -->
+  <br><br><br>
+  <p style="text-align:center;">
+    <input  type="submit" value="Submit">
+  </p>
+  
+</form>
+
+
+{% endblock %}

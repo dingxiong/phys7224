@@ -1,0 +1,164 @@
+{% extends "base2nd.html" %}
+{% load staticfiles %}
+
+{% block homework %}
+
+<h2 class="course-page-header">
+  Homework 12  
+</h2>
+
+<!-- -------------------------------------------------- -->
+<!-- the content of homework -->
+<div class="course-quiz-preamble">
+  For this homework, you can submit up to 3 times. <br>
+  We provide a template python code for you to start with. 
+  Download it from <a href="{% static "scripts/logisticMap.py" %}"> here</a>.
+</div>
+
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+
+  <!---------------- q1 ---------------- -->
+  <div style="padding:10px 5px 15px 20px;">
+    <h4>
+      Q12.1 \(\quad\) periodic orbits in Logistic map (Exercise 23.2)
+    </h4>
+    In homework 10, we use a brute force way to estimate the escape rate
+    in Logistic map:
+    \[
+    f(x) = Ax(1 - x)
+    \]
+    and we promised to use a more elegant way to solve the same problem.
+    Now, after studying chapter 23, it is time to 
+    apply the idea of  cycle expansion to the escape rate problem 
+    inside this system.
+    <br><br>
+    
+    The prerequisite of cycle expansion is the knowledge of the Floquet 
+    multipliers of the first few periodic orbits up to a certain truncation
+    length \( N\). Here we set \(N=4\). The symbolic representations of 
+    the periodic orbit up to length 4 are :
+    \(\{ 0, 1, 01, 001, 011, 0001, 0011, 0111\}\) (table 18.1). In template
+    code "logisticMap.py", please set "case=1" to find all these orbits and
+    their Floquet multipliers for parameter \(A=6.0\). 
+    For example, the multiplier of orbit \(01\) is -20.0 and the multiplier
+    of orbit \(0111\) is -328.669578465.  
+    <br><br>
+    
+    What is the Floquet multiplier of orbit \(0011\) ? ( at least 2 decimal
+    digits should be accurate )
+
+    <br><br>
+    {{hwForm.q1}}
+  </div>
+
+
+  <!---------------- q2 ---------------- -->
+  <div style="padding:10px 5px 15px 20px;">
+    <h4>
+      Q12.2 \(\quad\) dynamical zeta function in Logistic map 
+    </h4>
+
+    From previous chapters, we know that the escape rate in a dynamical
+    system is \(\gamma = -\ln s(0)\). Here \(s(0)\) is the leading 
+    eigenvalue of evolution operator, which turns out to be the inverse 
+    of the smallest zero point of dynamical zeta funcion or spectral 
+    determinant. On the other hand, 
+    Formula (23.9) and (23.10) describe the numerical procedure of evaluating
+    dynamical zeta function up to some truncation length. Since we only
+    have periodic orbits up to length 4 from Q12.1. We try to truncate
+    dynamizcal zeta function to \(N=2,3,4\) respectively and observe its 
+    convergence.
+    <br><br>
+    
+    Please set "case=2", and try to obtain dynamical zeta function for
+    \(A=6.0\) up to length 2, 3 an 4. For example, when \(N=2\), 
+    \[
+    1/\zeta = -0.00834z^2 - 0.4167z + 1
+    \]
+    Once you have dynamical function, you can get its zero points and find the
+    escape rate in this system. Also observe the convergence rate of 
+    escape rate.
+    <br><br>
+    
+    When \(N=4\), the coefficient of the leading term 
+    \(z^4\) is a very small number 
+    ( \(a_4\) is around \(10^{-7} \) ), 
+    What is \(10^7 \times a_4\) ? 
+    ( at least three significant digits should be accurate )
+
+    
+    <br><br>
+    {{hwForm.q2}}
+  </div>
+  
+  <!---------------- q3 ---------------- -->
+  <div style="padding:10px 5px 15px 20px;">
+    <h4>
+      Q12.3 \(\quad\) spectral determinant in Logistic map 
+    </h4>
+    The cycle expansion of spectral determinant is more
+    convolved than that of dynamical zeta function. Actually,
+    we first try to get the expansion of trace formula as shown
+    in the formula below (23.13), then we use the relation
+    between spectral determinant and the trace (formula below 23.15)
+    to get the relation between coefficients of trace expansion series
+    and coefficients of spectral determinant expansion series 
+    ( formula 23.16 ). 
+    <br><br>
+    
+    Now, set "case=3", and try to obtain spectral determinant for
+    \(A=6.0\) up to length 2, 3 an 4. For example, when \(N=2\),
+    \[
+    \det(1-z\mathcal{L}) = 1 - 0.4z -0.015238z^2
+    \]
+    See how quickly the escape rate converges.
+    When \(N=4\), the coefficient of the leading term 
+    \(z^4\) is a very small number 
+    ( \(a_4\) is around \(10^{-9} \) ), 
+    What is \(10^9 \times a_4\) ? 
+    ( at least three significant digits should be accurate )
+
+    
+    <br><br>
+    {{hwForm.q3}}
+  </div>
+
+  <!---------------- q4 ---------------- -->
+  <div style="padding:10px 5px 15px 20px;">
+    <h4>
+      Q12.4 \(\quad\) spectral determinant in Logistic map -- continued 
+    </h4>
+
+    Now set \(A=5.0\), and try to find the periodic orbits up to length
+    \(N=5\). Obtain the cycle expansion of spectral determinant up to
+    truncation number 5. What is the escape rate? So far, you understand
+    that cycle expansion is far superior to the numerical simulation
+    we did before. (Note:
+    at least 5 digits should be accurate. )
+
+    
+    <br><br>
+    {{hwForm.q4}}
+  </div>
+
+  
+  <!---------------- email ---------------- -->
+  <div style="padding:10px 5px 15px 20px;">
+    <h4>Your e-mail</h4>
+    Please enter your e-mail (the same you are registered under in Piazza) to receive your grades:
+    <br><br>
+    
+    {{hwForm.email}}
+  </div>
+
+  <!---------------- submit ---------------- -->
+  <br><br><br>
+  <p style="text-align:center;">
+    <input  type="submit" value="Submit">
+  </p>
+  
+</form>
+
+
+{% endblock %}
