@@ -313,7 +313,7 @@ def hw9(request):
             points, gradeTable = grade(Hw9_key,
                                        {'q1': q1, 'q2': q2, 'q3': q3, 'q4': q4, 'q5': q5},
                                        Hw9Form())
-            emailGrade(9, courseLinks[1], courseNames[1],
+            emailGrade(9, courseLinks[2], courseNames[2],
                        weekLinks[9], 'week 9',
                        homeworkLinks[9], 'homework 9',
                        points['gs'], points['gf'], (int)(points['gp']*100),
@@ -349,7 +349,7 @@ def hw10(request):
             points, gradeTable = grade(Hw10_key,
                                        {'q1': q1, 'q2': q2, 'q3': q3, 'q4': q4},
                                        Hw10Form())
-            emailGrade(10, courseLinks[1], courseNames[1],
+            emailGrade(10, courseLinks[2], courseNames[2],
                        weekLinks[10], 'week 10',
                        homeworkLinks[10], 'homework 10',
                        points['gs'], points['gf'], (int)(points['gp']*100),
@@ -383,7 +383,7 @@ def hw11(request):
             points, gradeTable = grade(Hw11_key,
                                        {'q1': q1, 'q2': q2},
                                        Hw11Form())
-            emailGrade(11, courseLinks[1], courseNames[1],
+            emailGrade(11, courseLinks[2], courseNames[2],
                        weekLinks[11], 'week 11',
                        homeworkLinks[11], 'homework 11',
                        points['gs'], points['gf'], (int)(points['gp']*100),
@@ -417,7 +417,7 @@ def hw12(request):
             points, gradeTable = grade(Hw12_key,
                                        {'q1': q1, 'q2': q2, 'q3': q3, 'q4': q4},
                                        Hw12Form())
-            emailGrade(12, courseLinks[1], courseNames[1],
+            emailGrade(12, courseLinks[2], courseNames[2],
                        weekLinks[12], 'week 12',
                        homeworkLinks[12], 'homework 12',
                        points['gs'], points['gf'], (int)(points['gp']*100),
@@ -453,7 +453,7 @@ def hw13(request):
             points, gradeTable = grade(Hw13_key,
                                        {'q1': q1, 'q2': q2, 'q3': q3, 'q4': q4},
                                        Hw13Form())
-            emailGrade(13, courseLinks[1], courseNames[1],
+            emailGrade(13, courseLinks[2], courseNames[2],
                        weekLinks[13], 'week 13',
                        homeworkLinks[13], 'homework 13',
                        points['gs'], points['gf'], (int)(points['gp']*100),
@@ -488,7 +488,7 @@ def hw14(request):
             points, gradeTable = grade(Hw14_key,
                                        {'q1': q1, 'q2': q2, 'q3': q3},
                                        Hw14Form())
-            emailGrade(14, courseLinks[1], courseNames[1],
+            emailGrade(14, courseLinks[2], courseNames[2],
                        weekLinks[14], 'week 14',
                        homeworkLinks[14], 'homework 14',
                        points['gs'], points['gf'], (int)(points['gp']*100),
@@ -520,7 +520,7 @@ def hw15(request):
             points, gradeTable = grade(Hw15_key,
                                        {'q1': q1, 'q2': q2},
                                        Hw15Form())
-            emailGrade(15, courseLinks[1], courseNames[1],
+            emailGrade(15, courseLinks[2], courseNames[2],
                        weekLinks[15], 'week 15',
                        homeworkLinks[15], 'homework 15',
                        points['gs'], points['gf'], (int)(points['gp']*100),
@@ -553,7 +553,7 @@ def hw16(request):
             points, gradeTable = grade(Hw16_key,
                                        {'q1': q1, 'q2': q2, 'q3': q3},
                                        Hw16Form())
-            emailGrade(16, courseLinks[1], courseNames[1],
+            emailGrade(16, courseLinks[2], courseNames[2],
                        weekLinks[16], 'week 16',
                        homeworkLinks[16], 'homework 16',
                        points['gs'], points['gf'], (int)(points['gp']*100),

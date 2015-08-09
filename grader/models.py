@@ -271,9 +271,9 @@ class Hw8_submit(models.Model):
     email = models.EmailField(max_length=300)
     time = models.DateTimeField()
     hasGraded = models.BooleanField(default=False)
-
-    q1 = models.CharField(blank=True, max_length=500)
-    q2 = models.CharField(blank=True, max_length=500)
+    
+    q1 = models.FloatField(blank=True, null=True)
+    q2 = models.FloatField(blank=True, null=True)
 
     g1 = models.FloatField(blank=True, default=0)
     g2 = models.FloatField(blank=True, default=0)

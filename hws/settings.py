@@ -123,4 +123,4 @@ import dj_database_url
 
 # Static asset configuration (choose between local and server)
 # STATIC_ROOT = 'staticfiles'
-STATIC_ROOT = '/home/xding/00git/phys7224/hws/static_root/'
+STATIC_ROOT = '/home/xding/00git/phys7224/static_root/'

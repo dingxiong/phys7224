@@ -89,7 +89,7 @@ if len(Hw6_key.objects.all()) == 0:
 ############################################################
 # hw 7
 if len(Hw7_key.objects.all()) == 0:
-    k = Hw7_key(qname='q1', qtitle="Q7.1   Stable and unstable manifold of Henon map (Example 15.5)", qtype='number', numberAnser=0.41387011, qtol=0.013, qpoints=2)
+    k = Hw7_key(qname='q1', qtitle="Q7.1   Stable and unstable manifold of Henon map (Example 15.5)", qtype='number', numberAnswer=0.41387011, qtol=0.013, qpoints=2)
     k.save()
     k = Hw7_key(qname='q2', qtitle="Q7.2   Henon map continued -- iteration of region 0BCD", qtype='choice', choiceAnswer='4th', qpoints=3)
     k.save()
@@ -119,7 +119,7 @@ if len(Hw9_key.objects.all()) == 0:
     k.save()
     k = Hw9_key(qname='q4', qtitle='Q9.4  Alphabet \(\{a, b, c\}\) pruned \(\_ab\_\) -- continued', qtype='number', numberAnswer=2, qtol=0.0001, qpoints=3)
     k.save()
-    k = Hw9_key(qname='q5', qtitle='Q9.5  Counting periodic orbit (Example 18.8, 18.9)', qtype='number', numberAnser=536, qtol=0.001, qpoints=3)
+    k = Hw9_key(qname='q5', qtitle='Q9.5  Counting periodic orbit (Example 18.8, 18.9)', qtype='number', numberAnswer=536, qtol=0.001, qpoints=3)
     k.save()
 
 ############################################################
@@ -168,7 +168,7 @@ if len(Hw13_key.objects.all()) == 0:
 
 ############################################################
 # hw 14
-if len(Hw144_key.objects.all()) == 0:
+if len(Hw14_key.objects.all()) == 0:
     k = Hw14_key(qname='q1', qtitle='Q14.1   number of irreducible representations', qtype='number', numberAnswer=8, qtol=0.001, qpoints=2)
     k.save()
     k = Hw14_key(qname='q2', qtitle='Q14.2  Character table of \(D_2\) (or \(C_{2v}\))', qtype='number', numberAnswer=-1, qtol=0.0001, qpoints=2)
