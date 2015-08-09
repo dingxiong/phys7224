@@ -72,6 +72,32 @@ if len(Hw5_key.objects.all()) == 0:
     k = Hw5_key(qname='q5', qtitle='Q5.5  Jacobian of a relative periodic orbit', qtype='choice', choiceAnswer='1st', qpoints=3)
     k.save()
 
+############################################################
+# hw 6
+if len(Hw6_key.objects.all()) == 0:
+    k = Hw6_key(qname='q1', qtitle="Q6.1   Projection into slice", qtype='choice', choiceAnswer='5th',  qpoints=2)
+    k.save()
+    k = Hw6_key(qname='q2', qtitle="Q6.2   Projection of Jacobian", qtype='choice', choiceAnswer='1st', qpoints=3)
+    k.save()
+    k = Hw6_key(qname='q3', qtitle='Q6.3   Full tent map (Chapter 14 Example 14.8, 14.10)', qtype='number', numberAnswer=0.03077, qtol=0.001, qpoints=3)
+    k.save()
+    k = Hw6_key(qname='q4', qtitle='Q6.4   Golden mean pruned map (Chapter 14 Exercise 14.6)', qtype='number', numberAnswer=0.809017, qtol=0.01, qpoints=2)
+    k.save()
+    k = Hw6_key(qname='q5', qtitle='Q6.5   Golden mean map -- continued', qtype='choice', choiceAnswer='3rd', qpoints=2)
+    k.save()
+
+############################################################
+# hw 7
+if len(Hw7_key.objects.all()) == 0:
+    k = Hw7_key(qname='q1', qtitle="Q7.1   Stable and unstable manifold of Henon map (Example 15.5)", qtype='number', numberAnser=0.41387011, qtol=0.013, qpoints=2)
+    k.save()
+    k = Hw7_key(qname='q2', qtitle="Q7.2   Henon map continued -- iteration of region 0BCD", qtype='choice', choiceAnswer='4th', qpoints=3)
+    k.save()
+    k = Hw7_key(qname='q3', qtitle='Q7.3   Henon map continued -- periodic orbits', qtype='number', numberAnswer=-0.40824829, qtol=0.012, qpoints=2)
+    k.save()
+    k = Hw7_key(qname='q4', qtitle='Q7.4   Henon map continued -- the number of intersection regions', qtype='number', numberAnswer=128, qtol=0.001, qpoints=2)
+    k.save()
+
 
 ############################################################
 # hw 8
