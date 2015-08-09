@@ -2,3 +2,4 @@
 *~
 venv
 hws/static_root
+initDB.py
