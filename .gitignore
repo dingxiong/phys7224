@@ -1,5 +1,5 @@
 *.pyc
 *~
 venv
-hws/static_root
+static_root
 initDB.py
