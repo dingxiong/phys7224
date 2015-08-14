@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    {% for hw in allGrades %}
+    {% for entry in hw %}
+    {{ entry.email}} {{entry.gs}} {{entry.gp}} <br>
+    {% endfor %}
+    {% endfor %}
+
+  </body>
+</html>
