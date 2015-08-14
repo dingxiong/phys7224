@@ -5,6 +5,7 @@ from django.utils import timezone
 from django.template.loader import get_template
 from django.template import Context
 from django.core.mail import EmailMultiAlternatives
+from django.contrib.auth.decorators import user_passes_test
 from .forms import *
 from .info import *
 
@@ -575,6 +576,17 @@ def hw16(request):
     # default action
     return render(request, 'homework16.html',
                   {'hwForm': Hw16Form()})
+
+
+# @user_passes_test(lambda u: u.is_superuser)
+# def viewGrades(request):
+#     t = [Hw1_submit, Hw2_submit, Hw3_submit, Hw4_submit, Hw5_submit,
+#          Hw6_submit, Hw7_submit, Hw8_submit, Hw9_submit, Hw10_submit,
+#          Hw11_submit, Hw12_submit, Hw13_submit, Hw14_submit,
+#          Hw15_submit, Hw16_submit]
+#     allGrades = [x.objects.all() for x in t]
+#     return render(request, 'viewGrades.html',
+#                   {'allGrades': allGrades})
 
 
 ######################################################################

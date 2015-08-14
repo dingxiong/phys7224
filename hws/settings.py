@@ -12,7 +12,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = secretKey
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+# DEBUG = False
+DEBUG = True
 
 # for local Apache
 # ALLOWED_HOSTS = ['128.61.58.51']
@@ -116,11 +117,11 @@ EMAIL_PORT = 587
 
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
-DATABASES['default'] = dj_database_url.config()
+#DATABASES['default'] = dj_database_url.config()
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+#SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 
 # Static asset configuration (choose between local and server)
-STATIC_ROOT = 'staticfiles'
-# STATIC_ROOT = '/home/xding/00git/phys7224/static_root/'
+#STATIC_ROOT = 'staticfiles'
+STATIC_ROOT = '/home/xding/00git/phys7224/static_root/'
