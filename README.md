@@ -1,3 +1,12 @@
+# !!WARNING!!
+This repo is outdated. The latest code is hosted in Heroku.
+Please log into Heroku to checkout the repo.
+
+Heroku  
+username: phys7224@gmail.com 
+password: ask Prof. Predrag
+
+
 # phys7224 online course grader system
 This grader is written under `python-django` platform.
 
